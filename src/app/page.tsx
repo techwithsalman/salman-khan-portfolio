@@ -5,7 +5,6 @@ import HeroReferenceSection from '@/components/hero/HeroReferenceSection'
 import CinematicProjectShowcase from '@/components/showcase/CinematicProjectShowcase'
 import CurriculumVitaeSection from '@/components/cv/CurriculumVitaeSection'
 import ReferenceFooter from '@/components/footer/ReferenceFooter'
-import InteractiveSmartphone from '@/components/phone/InteractiveSmartphone'
 import ReferenceNav from '@/components/navigation/ReferenceNav'
 
 export default function HomePage() {
@@ -25,9 +24,6 @@ export default function HomePage() {
 
       {/* 5. Broadcast Sign-off & Footer */}
       <ReferenceFooter />
-
-      {/* 6. Interactive Smartphone with Arrow in Bottom-Left */}
-      <InteractiveSmartphone />
     </div>
   )
 }

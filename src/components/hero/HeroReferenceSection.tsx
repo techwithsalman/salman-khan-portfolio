@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { sound } from '@/utils/audio'
 import { portfolioConfig } from '@/data/portfolioConfig'
 import { ArrowDown, RotateCw } from 'lucide-react'
+import InteractiveSmartphone from '@/components/phone/InteractiveSmartphone'
 
 export default function HeroReferenceSection() {
   const [badgeRotation, setBadgeRotation] = useState({ x: 0, y: 0, z: -1.5 })
@@ -320,6 +321,8 @@ export default function HeroReferenceSection() {
           <span>SCROLL INTO THE WORK</span>
         </button>
       </div>
+      {/* 8. INTERACTIVE SMARTPHONE IN BOTTOM-LEFT */}
+      <InteractiveSmartphone />
     </section>
   )
 }

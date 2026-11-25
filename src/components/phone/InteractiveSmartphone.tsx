@@ -58,18 +58,18 @@ export default function InteractiveSmartphone() {
 
   return (
     <div
-      className="fixed bottom-0 left-4 sm:left-6 z-40 select-none will-change-transform"
+      className="absolute bottom-0 left-4 sm:left-10 z-40 select-none will-change-transform"
       style={{
         width: '260px',
         transform: isOpen
           ? 'translateY(-20px) rotate(0deg)'
-          : 'translateY(calc(100% - 110px)) rotate(-5deg)',
+          : 'translateY(calc(100% - 160px)) rotate(-5deg)',
         transition: 'transform 0.6s cubic-bezier(0.2, 0.85, 0.25, 1)',
       }}
     >
       {/* White Hand-drawn Arrow pointing toward the phone (visible when closed) */}
       {!isOpen && (
-        <div className="absolute -top-20 right-[-30px] pointer-events-none">
+        <div className="absolute -top-16 right-[-20px] pointer-events-none">
           <svg
             className="w-24 h-20 overflow-visible text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
             viewBox="0 0 120 92"
