@@ -255,6 +255,7 @@
       });
 
     } finally {
+      initPubg3DGallery();
       isApplying = false;
     }
   }
@@ -280,6 +281,79 @@
     subtree: true,
     attributes: false
   });
+
+  
+  // =========================================================================
+  // PUBG 3D Interactive Curved Exhibition Gallery Initializer
+  // =========================================================================
+  function initPubg3DGallery() {
+    if (window.__pubgGalleryInitialized) return;
+    const canvas = document.querySelector('.PrintGallery_canvas__AYIfq');
+    const gallerySection = document.getElementById('gallery');
+    const win = document.querySelector('.PrintGallery_window__AF_6C');
+    const veil = document.querySelector('.PrintGallery_veil__8GHBR');
+    if (!canvas || !gallerySection || !window.webpackChunk_N_E) return;
+
+    window.__pubgGalleryInitialized = true;
+
+    let wreq = null;
+    window.webpackChunk_N_E.push([['__pubg_gallery_init__'], {}, (req) => { wreq = req; }]);
+    if (!wreq) return;
+
+    Promise.all([wreq.e(1831), wreq.e(9367), wreq.e(8734)]).then(() => {
+      const { GalleryScene } = wreq(28734);
+      const mod31947 = wreq(31947);
+      if (!GalleryScene || !mod31947) return;
+
+      const items = (mod31947.Yx || []).map(t => ({
+        id: t.id,
+        src: mod31947._w(t.image, 480),
+        title: t.title,
+        meta: 'Tactical Exhibition · PUBG Edition'
+      }));
+
+      const scene = new GalleryScene(canvas, items, {
+        onFocus: (idx) => {},
+        onOpen: (idx) => {},
+        onDoor: () => {},
+        onHover: (focused, x, y, active) => {
+          canvas.dataset.pointer = String(active);
+        }
+      }, {
+        title: 'sans-serif',
+        mono: 'monospace',
+        cta: 'View post'
+      });
+
+      window.__galleryInstance = scene;
+      scene.resize();
+      scene.setEntrance(1);
+      scene.start();
+
+      if (win) win.setAttribute('data-ready', 'true');
+      if (veil) {
+        veil.style.opacity = '0';
+        veil.style.pointerEvents = 'none';
+        veil.style.display = 'none';
+      }
+
+      const updateGalleryScroll = () => {
+        const rect = gallerySection.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const entrance = Math.min(1, Math.max(0, 1 - rect.top / vh));
+        scene.setEntrance(entrance > 0.05 ? 1 : 0);
+        const scrollWalk = Math.min(1, Math.max(0, -rect.top / Math.max(1, gallerySection.offsetHeight - 1.6 * vh)));
+        scene.setScrollWalk(scrollWalk);
+      };
+
+      window.addEventListener('scroll', updateGalleryScroll, { passive: true });
+      window.addEventListener('resize', () => { scene.resize(); updateGalleryScroll(); }, { passive: true });
+      updateGalleryScroll();
+      console.log('[Personalizer] PUBG 3D Gallery initialized and running.');
+    }).catch(err => {
+      console.error('[Personalizer] Error loading PUBG gallery chunks:', err);
+    });
+  }
 
   console.log('[Personalizer] Salman Khan PUBG Portfolio customization ready.');
 })();

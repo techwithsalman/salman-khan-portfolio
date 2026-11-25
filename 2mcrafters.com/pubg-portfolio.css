@@ -412,3 +412,21 @@ footer,
 p.ui_footerRole__sPnI_ {
   display: none !important;
 }
+
+/* =========================================================================
+   PUBG 3D Exhibition Gallery Polish & Veil Override
+   ========================================================================= */
+.PrintGallery_veil__8GHBR {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  display: none !important;
+}
+
+.PrintGallery_window__AF_6C {
+  opacity: 1 !important;
+}
+
+.PrintGallery_canvas__AYIfq {
+  opacity: 1 !important;
+  display: block !important;
+}
