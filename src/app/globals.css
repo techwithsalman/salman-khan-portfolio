@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800;900&display=swap');
+
+:root {
+  --font-outfit: 'Outfit', sans-serif;
+  --font-syne: 'Syne', sans-serif;
+  --font-caveat: 'Caveat', cursive;
+  --font-mono: 'Space Grotesk', monospace;
+  --bg-primary: #000814;
+  --text-primary: #f8fafc;
+}
+
+html.dark {
+  --bg-primary: #000814;
+  --text-primary: #f8fafc;
+}
+
+html:not(.dark) {
+  --bg-primary: #f4f7fb;
+  --text-primary: #0f172a;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-outfit);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000c18;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0284c7;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+/* Utilities */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 3D Transform Utilities */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}

@@ -1,0 +1,63 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Length 820 >>
+stream
+BT
+/F1 24 Tf
+50 730 Td
+(ALEXANDER VANCE) Tj
+/F1 12 Tf
+0 -24 Td
+(Senior Creative Technologist & 3D Interactive Developer) Tj
+0 -18 Td
+(San Francisco, CA | alexander.vance.dev@gmail.com | +1 415 890 3419) Tj
+0 -30 Td
+(SUMMARY) Tj
+0 -16 Td
+(Creative developer with 8+ years specializing in WebGL, Three.js, GSAP, and Next.js.) Tj
+0 -30 Td
+(EXPERIENCE) Tj
+0 -16 Td
+(Principal Creative Technologist - Aether Digital (2023 - Present)) Tj
+0 -14 Td
+(Senior Interactive WebGL Developer - Kinetic Matrix (2021 - 2023)) Tj
+0 -14 Td
+(Frontend Creative Engineer - Verve Studio (2019 - 2021)) Tj
+0 -30 Td
+(TECHNICAL EXPERTISE) Tj
+0 -16 Td
+(Three.js, React Three Fiber, GLSL Shaders, Next.js, TypeScript, GSAP, Lenis, WebGL) Tj
+0 -30 Td
+(EDUCATION) Tj
+0 -16 Td
+(M.S. in Computational Media & Interactive Arts - CalArts (Summa Cum Laude)) Tj
+0 -14 Td
+(B.S. in Computer Science & Digital Media - Univ. of Washington) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000224 00000 n 
+0000000305 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1180
+%%EOF
