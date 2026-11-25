@@ -1,35 +1,33 @@
+'use client'
+
 import React from 'react'
-import HeroSection from '@/components/hero/HeroSection'
-import ProjectShowcase from '@/components/showcase/ProjectShowcase'
-import ArtGallery3D from '@/components/gallery/ArtGallery3D'
-import AboutSection from '@/components/about/AboutSection'
-import CareerTimeline from '@/components/timeline/CareerTimeline'
-import CreativeLab from '@/components/lab/CreativeLab'
-import ContactSection from '@/components/contact/ContactSection'
+import HeroReferenceSection from '@/components/hero/HeroReferenceSection'
+import CinematicProjectShowcase from '@/components/showcase/CinematicProjectShowcase'
+import CurriculumVitaeSection from '@/components/cv/CurriculumVitaeSection'
+import ReferenceFooter from '@/components/footer/ReferenceFooter'
+import InteractiveSmartphone from '@/components/phone/InteractiveSmartphone'
+import ReferenceNav from '@/components/navigation/ReferenceNav'
 
 export default function HomePage() {
   return (
-    <div className="relative w-full overflow-hidden">
-      {/* 1. Cinematic Hero with 3D Depth, Oversized Name, Physics Badge, Phone */}
-      <HeroSection />
+    <div className="relative w-full bg-black min-h-screen text-white overflow-x-hidden selection:bg-white selection:text-black">
+      {/* 1. Floating Navigation Pill (Top-Right) */}
+      <ReferenceNav />
 
-      {/* 2. Interactive Project Showcase (Horizontal Scroll Gallery & List Mode) */}
-      <ProjectShowcase />
+      {/* 2. Hero Section matching Screenshot 2 */}
+      <HeroReferenceSection />
 
-      {/* 3. 3D Generative Art Gallery */}
-      <ArtGallery3D />
+      {/* 3. Cinematic Full-Screen Project Showcase matching Screenshot 3 */}
+      <CinematicProjectShowcase />
 
-      {/* 4. About Me & Manifesto */}
-      <AboutSection />
+      {/* 4. Curriculum Vitae & Experience Timeline */}
+      <CurriculumVitaeSection />
 
-      {/* 5. Career & Education Timeline */}
-      <CareerTimeline />
+      {/* 5. Broadcast Sign-off & Footer */}
+      <ReferenceFooter />
 
-      {/* 6. Creative Code Lab */}
-      <CreativeLab />
-
-      {/* 7. Contact Section */}
-      <ContactSection />
+      {/* 6. Interactive Smartphone with Arrow in Bottom-Left */}
+      <InteractiveSmartphone />
     </div>
   )
 }

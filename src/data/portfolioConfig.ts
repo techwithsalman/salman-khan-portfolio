@@ -1,484 +1,302 @@
-import { PortfolioConfig } from '@/types/portfolio'
+export interface ProjectCase {
+  id: string
+  number: string
+  title: string
+  category: string
+  description: string
+  liveUrl: string
+  domain: string
+  screenshot: string
+  badgeText: string
+  tags: string[]
+}
+
+export interface PortfolioConfig {
+  personal: {
+    firstName: string
+    lastName: string
+    fullName: string
+    role: string
+    subtitle: string
+    location: string
+    email: string
+    phone: string
+    phoneDisplay: string
+    whatsapp: string
+    instagram: string
+    linkedin: string
+    github: string
+    behance: string
+    cvUrl: string
+    timezone: string
+    status: string
+  }
+  hero: {
+    nameLine1: string
+    nameLine2: string
+    scriptText: string
+    designerCard: {
+      year: string
+      role: string
+      name: string
+      focus: string
+      instagram: string
+      email: string
+      photo: string
+    }
+  }
+  projects: ProjectCase[]
+  experience: Array<{
+    period: string
+    role: string
+    company: string
+    location: string
+    description: string
+    deliverables: string[]
+  }>
+  education: Array<{
+    period: string
+    degree: string
+    institution: string
+    location: string
+    highlight: string
+  }>
+  skills: Array<{
+    category: string
+    items: Array<{ name: string; level: number }>
+  }>
+  softSkills: string[]
+  languages: Array<{
+    language: string
+    proficiency: string
+    code: string
+    flag: string
+  }>
+  meta: {
+    siteTitle: string
+    siteDescription: string
+    themeColor: string
+  }
+}
 
 export const portfolioConfig: PortfolioConfig = {
   personal: {
-    name: 'Alexander Vance',
-    firstName: 'Alexander',
-    lastName: 'Vance',
-    title: 'Senior Creative Technologist & 3D Interactive Developer',
-    role: 'Creative Developer & 3D Artist',
-    tagline: 'Bridging the boundaries between dimensional graphics, creative code, and human emotion.',
-    shortBio: 'Specializing in next-generation WebGL architectures, cinematic 3D web experiences, and high-performance interactive interfaces.',
-    fullBio: [
-      'I am a senior creative technologist and interactive designer with over 8 years of experience building immersive digital realities.',
-      'From custom GLSL shaders and real-time physics simulations to multi-tier full-stack architectures, I craft web spaces that refuse to look like boring templates.',
-      'My work fuses visual storytelling, strict typography discipline, micro-interactions, and 60+ FPS performance benchmarks across all screen viewports.'
-    ],
-    location: 'San Francisco, CA · Worldwide Remote',
-    status: 'Available for Select Q1/Q2 Projects',
-    email: 'alexander.vance.dev@gmail.com',
-    phone: '+1 (415) 890-3419',
-    phoneFormatted: '+1 (415) 890-3419',
-    whatsapp: '14158903419',
-    avatar: '/images/hero/portrait-front.webp',
-    cvUrl: '/docs/Alexander_Vance_Resume.pdf',
-    socialLinks: {
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-      twitter: 'https://x.com',
-      behance: 'https://behance.net',
-      instagram: 'https://instagram.com',
-      codepen: 'https://codepen.io',
-    },
+    firstName: 'MOHAMED',
+    lastName: 'ANDALOUSSI',
+    fullName: 'Mohamed Andaloussi',
+    role: 'Creative Developer & Graphic Designer',
+    subtitle: 'Creative Developer, Graphic Designer and Video Editor in Tangier, Morocco.',
+    location: 'Tangier, Morocco',
+    email: 'andalossi90@gmail.com',
+    phone: '+212688284783',
+    phoneDisplay: '+212 688 284 783',
+    whatsapp: '212688284783',
+    instagram: '@andaluussi',
+    linkedin: 'https://linkedin.com/in/mohamedandaloussi',
+    github: 'https://github.com/mohamedandaloussi',
+    behance: 'https://behance.net/mhmedaloui',
+    cvUrl: '/docs/CV.pdf',
+    timezone: 'Asia/Karachi',
+    status: 'Available for Creative Engagements',
   },
 
   hero: {
-    oversizedNameLine1: 'ALEXANDER',
-    oversizedNameLine2: 'VANCE',
-    handwrittenSubtitles: [
-      'Design & Creative Engineering',
-      'Shader Synthesis & 3D WebGL',
-      'Hyper-interactive Digital Spaces',
-      'Available for Global Engagements'
-    ],
-    badge: {
-      title: 'DESIGNER IDENTIFICATION',
-      idNumber: 'AV-9042-X',
-      role: 'CREATIVE DIRECTOR & TECH LEAD',
-      department: 'IMMERSIVE COMPUTING LAB',
-      clearance: 'LEVEL 5 CREATIVE',
-      issueDate: '2025 // 2026',
-      barcodeText: 'AV-9042-8812-3D',
-      avatar: '/images/hero/portrait-front.webp',
-      specialty: 'R3F / SHADERS / MOTION',
+    nameLine1: 'MOHAMED',
+    nameLine2: 'ANDALOUSSI',
+    scriptText: 'design & code',
+    designerCard: {
+      year: '2026',
+      role: 'CREATIVE DEV // DESIGNER',
+      name: 'M. ANDALOUSSI',
+      focus: 'DESIGN × CODE',
+      instagram: '@ANDALUUSSI',
+      email: 'ANDALOSSI90@GMAIL.COM',
+      photo: '/images/ref/portrait-jacket-1080.webp',
     },
-    contactPill: {
-      phoneNumber: '+1 (415) 890-3419',
-      statusText: 'Available for projects · Instant Signal',
-      quickDialAction: 'tel:+14158903419',
-      whatsappDirect: 'https://wa.me/14158903419',
-    },
-    quickStats: [
-      { label: 'Years Experience', value: '08+' },
-      { label: 'WebGL Projects', value: '45+' },
-      { label: 'Awwwards / FWA', value: '14' },
-      { label: 'FPS Target', value: '60+' },
-    ],
   },
 
   projects: [
     {
-      id: 'proj-01',
-      slug: 'lumina-spatial-audio',
-      title: 'Lumina Spatial Audio',
-      subtitle: 'Real-time 3D Soundstage & Waveform Synthesizer',
-      category: '3D WebGL',
-      year: '2025',
-      client: 'Acoustic Labs Corp',
-      liveUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
-      thumbnail: '/images/projects/project-01.webp',
-      badgeText: 'FWA of the Day',
-      description: 'An interactive browser-based 3D sound synthesizer and acoustic dispersion visualizer built using custom WebGL vertex displacement and Web Audio API spatial panners.',
-      challenge: 'Rendering 250,000 live sound particles driven by frequency bins at 60 FPS while keeping memory footprint under 40MB.',
-      solution: 'Engineered an instanced mesh GPU particle system computed directly in custom vertex shaders with off-screen audio worklet processing.',
-      technologies: ['Three.js', 'GLSL Shaders', 'Web Audio API', 'React', 'GSAP'],
-      metrics: [
-        { label: 'Frame Rate', value: '60 FPS stable' },
-        { label: 'User Retention', value: '+340%' },
-      ],
-      featured: true,
-      featuredNumber: '01',
+      id: 'case-01',
+      number: '01 / 07',
+      title: 'TANGIER CITY PORT',
+      category: 'Full-Stack Developer & Graphic Designer',
+      description: 'Official interactive port portal and marina infrastructure management platform for SGPTV Tangier.',
+      liveUrl: 'https://tangier-city-port.vercel.app',
+      domain: 'tangier-city-port.vercel.app',
+      screenshot: '/images/cases/case-tangierport.webp',
+      badgeText: 'PORT DE TANGER VILLE',
+      tags: ['Next.js', 'TypeScript', 'UI/UX Design', 'Branding'],
     },
     {
-      id: 'proj-02',
-      slug: 'strata-automotive-configurator',
-      title: 'Strata Hypercar 3D',
-      subtitle: 'Cinematic Real-Time Vehicle Customizer',
-      category: 'Creative Dev',
-      year: '2024',
-      client: 'Strata Motors International',
-      liveUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
-      thumbnail: '/images/projects/project-02.webp',
-      badgeText: 'Awwwards SOTD',
-      description: 'Ultra-photorealistic web-based 3D automotive showroom featuring real-time HDR environment reflections, paint clearcoat physically-based shaders, and dynamic interior lighting.',
-      challenge: 'Delivering ray-traced quality vehicle materials inside mobile browsers without excessive download times.',
-      solution: 'Crafted custom compressed KTX2 texture pipelines with progressive LoD rendering and baked pre-filtered irradiance probes.',
-      technologies: ['Three.js', 'TypeScript', 'Tailwind CSS', 'GLTF/DRACO', 'Next.js'],
-      metrics: [
-        { label: 'Model Load Time', value: '< 1.4s' },
-        { label: 'Conversion Lift', value: '+48%' },
-      ],
-      featured: true,
-      featuredNumber: '02',
+      id: 'case-02',
+      number: '02 / 07',
+      title: '2M CRAFTERS',
+      category: 'Creative Direction & Full-Stack Development',
+      description: 'Flagship creative studio platform featuring high-impact interactive web storytelling and multimedia showcase.',
+      liveUrl: 'https://2mcrafters.com',
+      domain: '2mcrafters.com',
+      screenshot: '/images/cases/case-crafters.webp',
+      badgeText: 'CREATIVE AGENCY',
+      tags: ['GSAP', 'WebGL', 'Motion Design', 'Video Production'],
     },
     {
-      id: 'proj-03',
-      slug: 'chronos-ai-platform',
-      title: 'Chronos Neural Foundry',
-      subtitle: 'Enterprise AI Telemetry & Multi-Agent Visualization',
-      category: 'Full-Stack',
-      year: '2024',
-      client: 'Chronos AI Systems',
-      liveUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
-      thumbnail: '/images/projects/project-03.webp',
-      badgeText: 'Design System of the Year',
-      description: 'Complete redesign and interactive data graph platform for real-time autonomous agent observability, memory token trajectories, and neural latent space mapping.',
-      challenge: 'Visualizing massive cyclic directed graphs with over 10,000 nodes without DOM degradation.',
-      solution: 'Implemented hybrid WebGPU / WebGL canvas graph renderers paired with Next.js streaming Server Components and WebSockets.',
-      technologies: ['Next.js', 'React', 'TypeScript', 'WebGL', 'Node.js', 'Tailwind'],
-      metrics: [
-        { label: 'Data Throughput', value: '100k events/sec' },
-        { label: 'Interactive Latency', value: '< 16ms' },
-      ],
-      featured: true,
-      featuredNumber: '03',
+      id: 'case-03',
+      number: '03 / 07',
+      title: 'TAXI VOYAGE MOGADOR',
+      category: 'Web Platform & Booking Architecture',
+      description: 'Comprehensive inter-city private transit booking system and fleet dispatch interface for tourist transit.',
+      liveUrl: 'https://taxivoyagemogador.ma',
+      domain: 'taxivoyagemogador.ma',
+      screenshot: '/images/cases/case-taxivoyagemogador.webp',
+      badgeText: 'TRANSIT & MOBILITY',
+      tags: ['React', 'Next.js', 'Booking Engine', 'Tailwind CSS'],
     },
     {
-      id: 'proj-04',
-      slug: 'aether-kinetic-typeface',
-      title: 'Aether Kinetic Foundry',
-      subtitle: 'Generative Variable Typography & Liquid Physics',
-      category: 'Creative Dev',
-      year: '2024',
-      client: 'Typographic Arts Biennial',
-      liveUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
-      thumbnail: '/images/projects/project-04.webp',
-      badgeText: 'Webby Nominee',
-      description: 'Interactive computational typography sandbox where glyphs deform as viscous fluid simulations based on cursor pressure and microphone volume.',
-      challenge: 'Converting TrueType bezier vectors into mathematical distance fields (SDF) in real-time.',
-      solution: 'Wrote custom Signed Distance Field font shaders with Navier-Stokes 2D velocity grid advection.',
-      technologies: ['GLSL', 'Canvas API', 'Three.js', 'GSAP', 'Lenis'],
-      metrics: [
-        { label: 'Interaction Sessions', value: '1.2M+' },
-        { label: 'Global Press Features', value: '18 Publications' },
-      ],
-      featured: true,
-      featuredNumber: '04',
+      id: 'case-04',
+      number: '04 / 07',
+      title: 'BOUKIR DIAMOND',
+      category: 'Haute Joaillerie & Digital Flagship',
+      description: 'Luxury jewelry e-commerce experience showcasing fine gemstones, bespoke rings, and artisanal craftsmanship.',
+      liveUrl: 'https://boukirdiamond.ma',
+      domain: 'boukirdiamond.ma',
+      screenshot: '/images/cases/case-boukirdiamond.webp',
+      badgeText: 'HAUTE JOAILLERIE',
+      tags: ['E-Commerce', 'Luxury Branding', 'Responsive Web'],
     },
     {
-      id: 'proj-05',
-      slug: 'zenith-luxury-horology',
-      title: 'Zenith Tourbillon Vault',
-      subtitle: 'Micro-Mechanical Horological Simulation in 3D',
-      category: '3D WebGL',
-      year: '2023',
-      client: 'Zenith Haute Horlogerie',
-      liveUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
-      thumbnail: '/images/projects/project-05.webp',
-      badgeText: 'CSS Design Awards WOTD',
-      description: 'An exploded 3D CAD simulation of a 348-component tourbillon watch movement with interactive gear trains, escapement simulation, and precision magnification.',
-      challenge: 'Accurate mechanical gear tooth collision and kinematics running in client browser runtime.',
-      solution: 'Mathematical parametric constraints computing angular velocities directly in requestAnimationFrame loop.',
-      technologies: ['Three.js', 'TypeScript', 'Tailwind CSS', 'Blender', 'GSAP'],
-      metrics: [
-        { label: 'Average Time on Page', value: '4m 32s' },
-        { label: 'Engagement Rate', value: '82%' },
-      ],
-      featured: true,
-      featuredNumber: '05',
+      id: 'case-05',
+      number: '05 / 07',
+      title: 'PORT AZUR',
+      category: 'Marina Real Estate & Visual Architecture',
+      description: 'Promotional digital experience for waterfront luxury real estate, residences, and private berth leasing.',
+      liveUrl: 'https://portazur.ma',
+      domain: 'portazur.ma',
+      screenshot: '/images/cases/case-portazur.webp',
+      badgeText: 'LUXURY LIVING',
+      tags: ['Interactive Layout', 'Graphic Design', 'Architecture'],
     },
     {
-      id: 'proj-06',
-      slug: 'nebula-design-system',
-      title: 'Nebula UI System',
-      subtitle: 'Glassmorphic Multi-Platform Design Architecture',
-      category: 'Design System',
-      year: '2023',
-      client: 'Vanguard Fintech Group',
-      liveUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
-      thumbnail: '/images/projects/project-06.webp',
-      badgeText: 'Enterprise Benchmark',
-      description: 'A comprehensive, accessible design system and component architecture deployed across 6 mobile and desktop client applications.',
-      challenge: 'Ensuring strict WCAG AAA contrast compliance while maintaining complex glassmorphic light refraction aesthetics.',
-      solution: 'Automated tokenized CSS color matrix equations adapting contrast ratios dynamically based on ambient background brightness.',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Storybook', 'Figma API'],
-      metrics: [
-        { label: 'Design Velocity', value: '+65%' },
-        { label: 'Accessibility Score', value: '100 / 100' },
-      ],
-      featured: false,
-      featuredNumber: '06',
-    },
-  ],
-
-  artGallery: [
-    {
-      id: 'art-01',
-      title: 'Singularity Torus Knot',
-      medium: 'Real-Time Procedural GLSL Mesh',
-      year: '2025',
-      description: 'A self-intersecting topological manifold continuously warped by harmonic noise fields and specular chromatic aberration.',
-      color: '#38bdf8',
-      accentColor: '#818cf8',
-      geometryType: 'torusKnot',
-      tags: ['Topology', 'Raymarching', 'Real-Time'],
-      aspectRatio: '1/1',
+      id: 'case-06',
+      number: '06 / 07',
+      title: 'ATLAS NEST',
+      category: 'Eco-Resort & Spatial Hospitality Experience',
+      description: 'Immersive booking site and virtual tour platform for mountain ecolodges and bespoke high-atlas excursions.',
+      liveUrl: 'https://atlasnest.ma',
+      domain: 'atlasnest.ma',
+      screenshot: '/images/cases/case-atlasnest.webp',
+      badgeText: 'ECO RESORT',
+      tags: ['UI/UX', 'Full-Stack', 'Photography Direction'],
     },
     {
-      id: 'art-02',
-      title: 'Quantum Icosahedron Lattice',
-      medium: 'Kinetic Wireframe & Iridescent Core',
-      year: '2025',
-      description: 'Platonic solid with rotating tessellated inner geometry vibrating to micro-distortions in spatial coordinates.',
-      color: '#f59e0b',
-      accentColor: '#ef4444',
-      geometryType: 'icosahedron',
-      tags: ['Sacred Geometry', 'Wireframe', 'Physics'],
-      aspectRatio: '1/1',
-    },
-    {
-      id: 'art-03',
-      title: 'Liquid Cyber Prism',
-      medium: 'Fresnel Refraction & Internal Caustics',
-      year: '2024',
-      description: 'Volumetric glass monolith casting rainbow caustics across an obsidian plane as virtual light sweeps overhead.',
-      color: '#10b981',
-      accentColor: '#06b6d4',
-      geometryType: 'hyperPrism',
-      tags: ['Caustics', 'Dispersion', 'Glassmorphism'],
-      aspectRatio: '1/1',
-    },
-    {
-      id: 'art-04',
-      title: 'Cosmic Pulsar Core',
-      medium: 'Turbulent Particle Deformation Sphere',
-      year: '2024',
-      description: 'Simulating stellar magnetic reconnection loops through GPU noise perturbation across 40,000 vertices.',
-      color: '#f43f5e',
-      accentColor: '#a855f7',
-      geometryType: 'quantumSphere',
-      tags: ['Stellar', 'Perlin Noise', 'Compute'],
-      aspectRatio: '1/1',
-    },
-    {
-      id: 'art-05',
-      title: 'Tesseract Hypercube Projection',
-      medium: '4D Rotation Projected to 3D Space',
-      year: '2024',
-      description: 'Interactive four-dimensional hypercube rotating around the XW and ZW planes, casting shifting shadows.',
-      color: '#6366f1',
-      accentColor: '#ec4899',
-      geometryType: 'cyberCube',
-      tags: ['4D Geometry', 'Mathematics', 'WebGL'],
-      aspectRatio: '1/1',
-    },
-    {
-      id: 'art-06',
-      title: 'Endless Möbius Ribbon',
-      medium: 'Single-Sided Non-Orientable Surface',
-      year: '2023',
-      description: 'Continuous metallic ribbon carrying a pulse of laser illumination that travels infinite laps without leaving its single boundary.',
-      color: '#14b8a6',
-      accentColor: '#3b82f6',
-      geometryType: 'mobiusStrip',
-      tags: ['Infinity', 'Topological Art', 'Shaders'],
-      aspectRatio: '1/1',
+      id: 'case-07',
+      number: '07 / 07',
+      title: 'ROVELIS ATLAS',
+      category: 'Industrial Logistics & Automotive Fleet',
+      description: 'Enterprise fleet tracking interface and corporate digital identity for cross-continental freight carriers.',
+      liveUrl: 'https://rovelisatlas.ma',
+      domain: 'rovelisatlas.ma',
+      screenshot: '/images/cases/case-rovelisatlas.webp',
+      badgeText: 'FLEET & LOGISTICS',
+      tags: ['Web Application', 'TypeScript', 'Brand Identity'],
     },
   ],
 
   experience: [
     {
-      id: 'exp-01',
-      role: 'Principal Creative Technologist',
-      company: 'Aether Digital Experience Studio',
-      period: '2023 — Present',
-      location: 'San Francisco, CA (Hybrid)',
-      type: 'Lead',
-      description: 'Lead visual engineering and WebGL development for flagship global accounts including high-fashion houses, luxury automotive, and vanguard AI companies.',
-      keyAchievements: [
-        'Architected real-time 3D pipelines generating over $4.2M in client digital pipeline value.',
-        'Mentored an 8-person engineering team across Three.js, GLSL shaders, and Next.js full-stack paradigms.',
-        'Winner of 4 Awwwards Site of the Day and 2 FWA recognitions in consecutive quarters.',
+      period: '2022 — Present',
+      role: 'Graphic Designer & Filmmaker',
+      company: 'Tanja Marina Bay International',
+      location: 'Tangier, Morocco',
+      description: 'Leading brand creative direction, documentary filmmaking, interactive visual assets, and marketing campaigns for the flagship Mediterranean marina.',
+      deliverables: [
+        'Creative direction for international nautical events and regattas',
+        'High-production promotional video editing and motion graphics',
+        'Digital brand identity systems across web and physical spaces',
       ],
-      techStack: ['Three.js', 'React Three Fiber', 'Next.js', 'GLSL', 'TypeScript', 'WebAudio'],
     },
     {
-      id: 'exp-02',
-      role: 'Senior Interactive WebGL Developer',
-      company: 'Kinetic Matrix Interactive',
-      period: '2021 — 2023',
-      location: 'New York, NY (Remote)',
-      type: 'Full-time',
-      description: 'Engineered hardware-accelerated interactive marketing experiences, 3D product configurators, and motion-heavy single-page applications.',
-      keyAchievements: [
-        'Pioneered internal headless GLTF asset pipeline reducing 3D model payload sizes by 68%.',
-        'Built custom GSAP timeline orchestrators handling complex camera choreographies and viewport scrubbing.',
-        'Achieved sub-1.5s initial load times on all WebGL client releases.',
+      period: '2020 — 2022',
+      role: 'Full-Stack Developer & Graphic Designer',
+      company: 'Port de Tanger Ville — SGPTV',
+      location: 'Tangier, Morocco',
+      description: 'Engineered web platforms, internal management portals, and public information displays for passenger traffic and cruise terminals.',
+      deliverables: [
+        'Developed official passenger portal with real-time ferry departures',
+        'Designed high-visibility terminal signage and print publications',
       ],
-      techStack: ['GSAP', 'Three.js', 'Webpack/Vite', 'Tailwind CSS', 'Blender', 'TypeScript'],
     },
     {
-      id: 'exp-03',
-      role: 'Frontend Creative Engineer & UI Designer',
-      company: 'Verve Studio Collective',
-      period: '2019 — 2021',
-      location: 'Austin, TX',
-      type: 'Full-time',
-      description: 'Designed and developed high-fidelity user interfaces, brand identities, and micro-interaction design systems for high-growth tech startups.',
-      keyAchievements: [
-        'Delivered 20+ responsive web platforms with custom CSS animations and bespoke typography.',
-        'Bridged design mockups in Figma directly to production React components with zero fidelity loss.',
+      period: '2018 — 2020',
+      role: 'Full-Stack Developer & Graphic Designer',
+      company: 'Conceptify by Insic',
+      location: 'Tangier, Morocco',
+      description: 'Built client e-commerce platforms, brand identities, and responsive web applications for international retail and corporate partners.',
+      deliverables: [
+        'Delivered 20+ custom responsive client websites',
+        'Implemented modern UI design systems and interactive animations',
       ],
-      techStack: ['React', 'JavaScript (ES6+)', 'SCSS/CSS3', 'Figma', 'SVG Animation', 'Node.js'],
-    },
-    {
-      id: 'exp-04',
-      role: 'Interactive Graphics Developer & Consultant',
-      company: 'Independent Creative Practice',
-      period: '2017 — 2019',
-      location: 'Worldwide',
-      type: 'Contract',
-      description: 'Collaborated with international digital agencies on experimental web campaigns, generative art commissions, and interactive museum kiosks.',
-      keyAchievements: [
-        'Created generative art displays exhibited at digital design festivals in Tokyo and London.',
-        'Developed custom touch-screen kiosk software with WebGL and electron.',
-      ],
-      techStack: ['Canvas2D', 'Three.js', 'Processing/p5.js', 'CSS Grid', 'WebGL'],
     },
   ],
 
   education: [
     {
-      id: 'edu-01',
-      degree: 'Master of Science in Computational Media & Interactive Arts',
-      institution: 'California Institute of the Arts / Tech Division',
-      period: '2015 — 2017',
-      location: 'Valencia, CA',
-      honors: 'Summa Cum Laude · Outstanding Thesis Award in Real-Time Computer Graphics',
-      courses: ['Computer Graphics & Shader Programming', 'Human-Computer Interaction (HCI)', 'Algorithmic Aesthetics', 'Spatial Audio Simulation'],
+      period: '2016 — 2018',
+      degree: 'Specialized Technician in Software Development',
+      institution: 'ISTA NTIC',
+      location: 'Tangier, Morocco',
+      highlight: 'Full-Stack Software Architecture & Database Design',
     },
     {
-      id: 'edu-02',
-      degree: 'Bachelor of Science in Computer Science & Digital Media',
-      institution: 'University of Washington',
-      period: '2011 — 2015',
-      location: 'Seattle, WA',
-      honors: 'Dean’s Honor List (All Semesters)',
-      courses: ['Data Structures & Algorithms', 'Linear Algebra & 3D Math', 'Software Engineering Architecture', 'Visual Design Principles'],
+      period: '2014 — 2016',
+      degree: 'Applied Arts & Visual Communications',
+      institution: 'Lycée Moulay Al Hassan',
+      location: 'Tangier, Morocco',
+      highlight: 'Graphic Design, Color Theory & Typographic Systems',
     },
   ],
 
   skills: [
     {
-      category: 'Creative Engineering & 3D WebGL',
-      skills: [
-        { name: 'Three.js / React Three Fiber', level: 96, highlight: true },
-        { name: 'GLSL Shaders & Raymarching', level: 90, highlight: true },
-        { name: 'GSAP Animation & ScrollTrigger', level: 95, highlight: true },
-        { name: 'WebGL / WebGPU Architecture', level: 88, highlight: true },
-        { name: 'Lenis Smooth Scroll Orchestration', level: 94 },
-        { name: 'Physics Simulations (Cannon/Rapier)', level: 85 },
+      category: 'Design & Visual Arts',
+      items: [
+        { name: 'Graphic Design & Brand Systems', level: 96 },
+        { name: 'Video Editing & Color Grading (Premiere / DaVinci)', level: 94 },
+        { name: 'UI / UX Design & Prototyping (Figma)', level: 92 },
+        { name: 'Motion Graphics (After Effects)', level: 90 },
       ],
     },
     {
-      category: 'Frontend & Full-Stack Architecture',
-      skills: [
-        { name: 'React 18 / Next.js (App Router)', level: 95, highlight: true },
-        { name: 'TypeScript Strict Mode', level: 96, highlight: true },
-        { name: 'Tailwind CSS & Design Tokens', level: 98, highlight: true },
-        { name: 'State Management (Zustand/Context)', level: 92 },
-        { name: 'Node.js / Edge Functions', level: 88 },
-        { name: 'REST & GraphQL APIs', level: 90 },
-      ],
-    },
-    {
-      category: 'Visual & 3D Production Tools',
-      skills: [
-        { name: 'Blender 3D Modeling & UV Unwrap', level: 86, highlight: true },
-        { name: 'Figma UI/UX & Design Systems', level: 94, highlight: true },
-        { name: 'Cinema 4D & Octane Render', level: 80 },
-        { name: 'Adobe Premiere & After Effects', level: 88 },
-        { name: 'Color Grading & Typography Systems', level: 92 },
-      ],
-    },
-    {
-      category: 'Performance & Engineering Standards',
-      skills: [
-        { name: '60+ FPS Viewport Optimization', level: 95, highlight: true },
-        { name: 'DRACO / KTX2 Asset Compression', level: 90 },
-        { name: 'WCAG AAA Accessibility Standards', level: 92 },
-        { name: 'SEO & Performance Profiling', level: 94 },
-        { name: 'Cross-Browser Polyfilling & Fallbacks', level: 96 },
+      category: 'Creative Development & Web',
+      items: [
+        { name: 'Next.js & React App Architecture', level: 94 },
+        { name: 'TypeScript & Modern JavaScript', level: 92 },
+        { name: 'Tailwind CSS & Responsive Layouts', level: 96 },
+        { name: 'GSAP, ScrollTrigger & Web Animations', level: 90 },
+        { name: 'Three.js / Canvas Interactive Visuals', level: 86 },
       ],
     },
   ],
 
   softSkills: [
-    'Creative & Visual Direction',
-    'Cross-functional Team Leadership',
-    'Architectural Problem Solving',
-    'Deep Attention to Typographic Craft',
-    'Client Presentation & Storytelling',
-    'Rapid Prototyping & Iteration',
-    'High Emotional Intelligence & Empathy',
-    'Agile Collaboration & Code Review',
+    'Creative & Artistic Direction',
+    'Visual Storytelling & Narrative Pacing',
+    'Cross-disciplinary Problem Solving',
+    'Attention to Detail & Typographic Craft',
+    'Client Communication & Pitch Presentations',
+    'Fast Turnaround & Production Agility',
   ],
 
   languages: [
-    { language: 'English', proficiency: 'Native / Bilingual', flag: '🇺🇸' },
-    { language: 'French', proficiency: 'Fluent Working Proficiency', flag: '🇫🇷' },
-    { language: 'Spanish', proficiency: 'Conversational', flag: '🇪🇸' },
-    { language: 'Japanese', proficiency: 'Elementary / Learning', flag: '🇯🇵' },
-  ],
-
-  creativeLab: [
-    {
-      id: 'lab-01',
-      title: 'Interactive Particle Flowfield',
-      type: 'Shader',
-      description: 'A 20,000 particle Curl Noise vortex that responds to cursor velocity, gravity wells, and dynamic mouse repulsion.',
-      fpsTarget: '60 FPS',
-      instructions: 'Move cursor across the viewport or drag to warp the gravity singularity.',
-      colorTheme: '#38bdf8',
-    },
-    {
-      id: 'lab-02',
-      title: 'Glassmorphism Optics & Chromatic Refraction',
-      type: 'Physics',
-      description: 'Multi-layer frosted glass prisms computing Snell’s law refractions and chromatic RGB split in real-time.',
-      fpsTarget: '60 FPS',
-      instructions: 'Click and drag the optical lens to refocus the background beam.',
-      colorTheme: '#f59e0b',
-    },
-    {
-      id: 'lab-03',
-      title: 'Harmonic Audio Synesthesia visualizer',
-      type: 'Audio-Reactive',
-      description: 'Generates procedural sinusoidal waveforms simulating audio frequency harmonics with real-time sound synthesized in Web Audio API.',
-      fpsTarget: '60 FPS',
-      instructions: 'Toggle the acoustic oscillator or hover to alter chord pitch frequencies.',
-      colorTheme: '#10b981',
-    },
-    {
-      id: 'lab-04',
-      title: 'Magnetic Spring Matrix Grid',
-      type: 'Procedural',
-      description: 'A responsive grid of 256 magnetic nodes that track pointer proximity using damped harmonic oscillation mathematics.',
-      fpsTarget: '60 FPS',
-      instructions: 'Swipe quickly across the grid to send ripples across adjacent nodes.',
-      colorTheme: '#a855f7',
-    },
+    { language: 'Arabic', proficiency: 'Native Language', code: 'AR', flag: '🇲🇦' },
+    { language: 'French', proficiency: 'Full Professional Proficiency', code: 'FR', flag: '🇫🇷' },
+    { language: 'English', proficiency: 'Professional Working Proficiency', code: 'EN', flag: '🇬🇧' },
+    { language: 'Spanish', proficiency: 'Conversational Working Proficiency', code: 'ES', flag: '🇪🇸' },
   ],
 
   meta: {
-    siteTitle: 'Alexander Vance | Senior Creative Technologist & 3D Interactive Developer',
-    siteDescription: 'Cinematic personal portfolio of Alexander Vance. Featuring real-time 3D WebGL experiences, interactive physics badge, horizontal project showcases, and creative code lab.',
-    siteKeywords: [
-      'Creative Technologist',
-      '3D WebGL Developer',
-      'Three.js Portfolio',
-      'GSAP ScrollTrigger',
-      'Interactive Design',
-      'Next.js 14',
-      'Alexander Vance',
-    ],
-    themeColorDark: '#001428',
-    themeColorLight: '#f3f6fb',
+    siteTitle: 'Mohamed Andaloussi | Creative Developer & Graphic Designer',
+    siteDescription: 'Explore Mohamed Andaloussi’s creative portfolio in Tangier, Morocco. Discover web development, graphic design, branding, filmmaking, UI/UX and digital projects.',
+    themeColor: '#001428',
   },
 }
