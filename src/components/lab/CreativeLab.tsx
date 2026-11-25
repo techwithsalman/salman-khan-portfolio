@@ -35,10 +35,10 @@ export default function CreativeLab() {
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: 0,
-        vy: 0,
-        hue: Math.random() * 60 + 180, // cyan to blue
-        size: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: (Math.random() - 0.5) * 1.5,
+        hue: Math.random() * 80 + 170, // bright cyan to vibrant turquoise and amber
+        size: Math.random() * 2.5 + 1.2,
       })
     }
 
@@ -57,22 +57,22 @@ export default function CreativeLab() {
       animId = requestAnimationFrame(loop)
       t += 0.008
 
-      // Semi-transparent trailing background
-      ctx.fillStyle = 'rgba(2, 6, 23, 0.18)'
+      // Semi-transparent trailing background for luminous trails
+      ctx.fillStyle = 'rgba(2, 6, 23, 0.22)'
       ctx.fillRect(0, 0, w, h)
 
       particles.forEach((p) => {
         // Flowfield angle based on curl trig
         const angle = Math.sin(p.x * 0.005 + t) * Math.cos(p.y * 0.005 + t) * Math.PI * 4
-        p.vx += Math.cos(angle) * 0.15
-        p.vy += Math.sin(angle) * 0.15
+        p.vx += Math.cos(angle) * 0.2
+        p.vy += Math.sin(angle) * 0.2
 
         // Mouse repulsion
         const dx = p.x - mouseX
         const dy = p.y - mouseY
         const dist = Math.sqrt(dx * dx + dy * dy)
-        if (dist < 100) {
-          const force = (1 - dist / 100) * 1.5
+        if (dist < 120) {
+          const force = (1 - dist / 120) * 2.2
           p.vx += (dx / dist) * force
           p.vy += (dy / dist) * force
         }
@@ -88,10 +88,13 @@ export default function CreativeLab() {
         if (p.y < 0) p.y = h
         if (p.y > h) p.y = 0
 
-        ctx.fillStyle = `hsla(${p.hue}, 90%, 65%, 0.8)`
+        ctx.shadowBlur = 8
+        ctx.shadowColor = `hsla(${p.hue}, 95%, 65%, 0.8)`
+        ctx.fillStyle = `hsla(${p.hue}, 95%, 75%, 0.95)`
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
         ctx.fill()
+        ctx.shadowBlur = 0
       })
     }
     loop()
@@ -180,7 +183,7 @@ export default function CreativeLab() {
         </div>
 
         {/* Experiment Tab Selectors */}
-        <div className="flex items-center gap-3 overflow-x-auto pb-4 mb-8 scrollbar-none">
+        <div className="flex flex-wrap items-center gap-2.5 pb-4 mb-8">
           {creativeLab.map((exp, idx) => (
             <button
               key={exp.id}

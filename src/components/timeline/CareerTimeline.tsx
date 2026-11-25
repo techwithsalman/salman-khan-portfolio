@@ -227,11 +227,18 @@ export default function CareerTimeline() {
             {languages.map((lang, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-white/10 hover:border-cyan-400/40 transition-colors"
+                className="p-6 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-white/10 hover:border-cyan-400/40 transition-colors flex flex-col justify-between"
               >
-                <div className="text-3xl mb-3">{lang.flag}</div>
-                <h3 className="text-lg font-display font-bold text-white">{lang.language}</h3>
-                <p className="text-xs font-mono text-cyan-400 mt-1">{lang.proficiency}</p>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-2xl">{lang.flag}</span>
+                  <span className="px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/20 text-[10px] font-mono text-cyan-400 font-bold">
+                    {lang.language.slice(0, 2).toUpperCase()}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-display font-bold text-white">{lang.language}</h3>
+                  <p className="text-xs font-mono text-cyan-400 mt-1">{lang.proficiency}</p>
+                </div>
               </div>
             ))}
           </div>
