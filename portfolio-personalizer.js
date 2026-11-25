@@ -113,19 +113,19 @@
               <img class="pubg-card-photo" src="${profile.realPhoto || '/images/mohamedandaloussi/laptop/salman-real-photo.png'}" alt="${profile.fullName || 'Salman Khan'}" />
             </div>
             <div class="pubg-card-rows">
-              <div class="pubg-card-row">
+              <div class="pubg-card-row pubg-card-row-1">
                 <span class="pubg-card-row-label">NAME:</span>
                 <span class="pubg-card-row-value">${profile.fullName || 'SALMAN KHAN'}</span>
               </div>
-              <div class="pubg-card-row">
+              <div class="pubg-card-row pubg-card-row-2">
                 <span class="pubg-card-row-label">ROLE:</span>
                 <span class="pubg-card-row-value">DESIGNER &amp; DEVELOPER</span>
               </div>
-              <div class="pubg-card-row">
+              <div class="pubg-card-row pubg-card-row-3">
                 <span class="pubg-card-row-label">FOCUS:</span>
                 <span class="pubg-card-row-value">${profile.focus || 'DESIGN × CODE × AI'}</span>
               </div>
-              <div class="pubg-card-row">
+              <div class="pubg-card-row pubg-card-row-4">
                 <span class="pubg-card-row-label">LOCATION:</span>
                 <span class="pubg-card-row-value">${(profile.location || 'KARACHI, PAKISTAN').toUpperCase()}</span>
               </div>
@@ -219,33 +219,30 @@
       });
 
       // 9. Closing Scene: SK//TV · CH 02
-      const channelLabels = document.querySelectorAll('.OfflineTV_channel__bU_aV, [class*="OfflineTV_channel"], [class*="channel"]');
+      const channelLabels = document.querySelectorAll('.OfflineTV_channel__bU_aV, [class*="OfflineTV_channel"], [class*="channel"], .OfflineTV_osd__73Ls6, [class*="OfflineTV_osd"]');
       channelLabels.forEach(el => {
-        if (el.textContent.includes('SK//TV') || el.textContent.includes('CH 02')) {
-          el.textContent = 'SK//TV · CH 02';
-        }
+        el.textContent = 'SK//TV · CH 02';
       });
 
-      // 10. Footer Branding & Single Clean Description Line
+      // 10. Footer Branding & Single Clean Description Line (No Duplicate)
       const footerBase = document.querySelector('.ui_footerBase__6SSYI span');
       if (footerBase) {
         footerBase.textContent = `${seo.copyright || '© 2026 SALMAN KHAN | TECH WITH SALMAN'}`;
       }
       
-      const footerRole = document.querySelector('.ui_footerRole__sPnI_');
-      if (footerRole) {
-        // Hide duplicated role line so only the location line appears
-        footerRole.style.display = 'none';
+      const footerFirstCol = document.querySelector('.ui_footerGrid__Xhmaf > div:first-child');
+      if (footerFirstCol) {
+        const role = footerFirstCol.querySelector('.ui_footerRole__sPnI_');
+        if (role) role.remove();
+        const desc = footerFirstCol.querySelector('p.ui_mono__m5sMh');
+        if (desc) {
+          desc.textContent = 'CREATIVE DESIGNER, DEVELOPER & AI AUTOMATION BUILDER — KARACHI, PAKISTAN.';
+          desc.style.fontSize = '12px';
+          desc.style.fontWeight = '700';
+          desc.style.letterSpacing = '0.5px';
+          desc.style.color = '#F5B800';
+        }
       }
-
-      const footerLocation = document.querySelectorAll('.ui_footer__CCdWi p.ui_mono__m5sMh, footer p.ui_mono__m5sMh');
-      footerLocation.forEach(p => {
-        p.textContent = 'CREATIVE DESIGNER, DEVELOPER & AI AUTOMATION BUILDER — KARACHI, PAKISTAN.';
-        p.style.fontSize = '12px';
-        p.style.fontWeight = '700';
-        p.style.letterSpacing = '0.5px';
-        p.style.color = '#F5B800';
-      });
 
       const footerBrands = document.querySelectorAll('footer, #closing, .ui_footer__CCdWi');
       footerBrands.forEach(f => {

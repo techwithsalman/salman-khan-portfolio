@@ -36,7 +36,7 @@
 /* Decorative "design & code" Typography = z-index 3 (Behind character, shifted left completely clear of face) */
 .LaptopDive_script__fuMhy {
   z-index: 3 !important;
-  left: calc(var(--script-left) - 240px) !important;
+  left: calc(var(--script-left) - 90px) !important;
   top: 130px !important;
   pointer-events: none;
   opacity: 0.95 !important;
@@ -44,14 +44,14 @@
 
 @media (max-width: 1200px) {
   .LaptopDive_script__fuMhy {
-    left: calc(var(--script-left) - 160px) !important;
+    left: calc(var(--script-left) - 60px) !important;
     top: 130px !important;
   }
 }
 
 @media (max-width: 1024px) {
   .LaptopDive_script__fuMhy {
-    left: calc(var(--script-left) - 120px) !important;
+    left: calc(var(--script-left) - 40px) !important;
     top: 140px !important;
   }
 }
@@ -59,7 +59,7 @@
 /* Main PUBG Character = z-index 4 (Shifted right closer to card, bottom-aligned, scaled down ~22-25%) */
 .LaptopDive_person__PSEh_ {
   z-index: 4 !important;
-  left: 140px !important;
+  left: calc(140px + 5vw) !important;
   top: auto !important;
   bottom: 0 !important;
   width: min(914px, 58vw) !important;
@@ -78,7 +78,7 @@
 
 @media (min-width: 1600px) {
   .LaptopDive_person__PSEh_ {
-    left: 170px !important;
+    left: calc(170px + 5vw) !important;
     width: 920px !important;
     height: 710px !important;
   }
@@ -86,7 +86,7 @@
 
 @media (max-width: 1400px) {
   .LaptopDive_person__PSEh_ {
-    left: 90px !important;
+    left: calc(90px + 4vw) !important;
     width: 820px !important;
     height: 630px !important;
   }
@@ -94,7 +94,7 @@
 
 @media (max-width: 1024px) {
   .LaptopDive_person__PSEh_ {
-    left: 20px !important;
+    left: calc(20px + 3vw) !important;
     width: 680px !important;
     height: 540px !important;
   }
@@ -233,45 +233,60 @@
   display: block;
 }
 
-/* Card Divider Rows */
+/* Card Divider Rows: Exactly aligned with the artwork's 4 yellow lines */
 .pubg-card-rows {
   position: absolute;
-  left: 19.6%;
-  width: 58.9%;
-  top: 70.8%;
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
+  left: 15.55%;
+  width: 67.92%;
+  top: 0;
+  bottom: 0;
   box-sizing: border-box;
-  font-family: var(--font-dive-sans, 'Onest', sans-serif);
+  font-family: var(--font-dive-mono, 'Space Mono', monospace);
   pointer-events: none;
 }
 
 .pubg-card-row {
+  position: absolute;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 7.5px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
+  align-items: baseline;
   line-height: 1;
+}
+
+.pubg-card-row-1 {
+  bottom: calc(100% - 72.3%);
+}
+
+.pubg-card-row-2 {
+  bottom: calc(100% - 76.8%);
+}
+
+.pubg-card-row-3 {
+  bottom: calc(100% - 81.2%);
+}
+
+.pubg-card-row-4 {
+  bottom: calc(100% - 85.6%);
 }
 
 .pubg-card-row-label {
   color: var(--pubg-yellow);
-  font-size: 7.5px;
-  letter-spacing: 0.6px;
+  font-size: clamp(6px, 0.62vw, 7.8px);
+  letter-spacing: 0.5px;
   font-weight: 800;
   flex-shrink: 0;
+  text-transform: uppercase;
 }
 
 .pubg-card-row-value {
   color: #FFFFFF;
-  font-size: 7.2px;
+  font-size: clamp(5.8px, 0.58vw, 7.4px);
   font-weight: 700;
   text-align: right;
   text-transform: uppercase;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.25px;
   white-space: nowrap;
 }
 
@@ -336,28 +351,64 @@
   display: none !important;
 }
 
-/* 6. Thanks for Watching Closing Scene — Single TV, CRT Alignment */
+/* 6. Thanks for Watching Closing Scene — CRT Screen Fit & Bezel Mask */
+.OfflineTV_day__KtVe6,
+[class*="OfflineTV_day"] {
+  background-image: url('/images/mohamedandaloussi/offline/tv-day-1920.webp') !important;
+  background-size: 100% 100% !important;
+}
+
+.OfflineTV_night__A5a2m,
+[class*="OfflineTV_night"] {
+  background-image: url('/images/mohamedandaloussi/offline/tv-night-1920.webp') !important;
+  background-size: 100% 100% !important;
+}
+
 .OfflineTV_screen__Wz_nB {
-  left: 38.6% !important;
-  top: 38.2% !important;
-  width: 20.3% !important;
-  height: 28.8% !important;
+  left: 39.8% !important;
+  top: 39.6% !important;
+  width: 18.8% !important;
+  height: 26.8% !important;
   border-radius: 12% / 15% !important;
-  background: #0b0d10 !important;
-  box-shadow: 0 0 60px rgba(255, 170, 36, 0.3), inset 0 0 25px rgba(0, 0, 0, 0.9) !important;
+  background: #07090c !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  overflow: hidden !important;
+}
+
+.OfflineTV_picture__njBIf {
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  overflow: hidden !important;
+}
+
+.OfflineTV_picture__njBIf video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: inherit !important;
+}
+
+.OfflineTV_glass__QA4ki {
+  border-radius: inherit !important;
+  pointer-events: none !important;
 }
 
 /* 7. Tactical PUBG Footer Background */
 footer,
 .ui_footer__CCdWi,
 [class*="ui_footer__"] {
-  background: #080808 url('/images/mohamedandaloussi/footer/pubg-footer-bg.webp') no-repeat center bottom !important;
-  background-size: cover !important;
+  background: #050608 url('/images/mohamedandaloussi/footer/pubg-footer-bg.png') no-repeat center bottom / cover !important;
   position: relative;
   border-top: 1px solid rgba(245, 184, 0, 0.35) !important;
 }
 
 /* Remove duplicated description in footer */
-.ui_footerRole__sPnI_ {
+.ui_footerRole__sPnI_,
+p.ui_footerRole__sPnI_ {
   display: none !important;
 }
