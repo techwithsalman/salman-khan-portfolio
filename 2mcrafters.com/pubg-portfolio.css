@@ -1,0 +1,363 @@
+/* ==========================================================================
+   PUBG THEME & PERSONALIZATION STYLES FOR SALMAN KHAN PORTFOLIO
+   (FINAL CINEMATIC EDITION)
+   ========================================================================== */
+
+:root {
+  --pubg-yellow: #F5B800;
+  --pubg-gold: #F5B82E;
+  --pubg-amber: #FFAA24;
+  --pubg-orange: #FF7800;
+  --pubg-dark: #141414;
+  --pubg-black: #080808;
+  --pubg-white: #F5F5F5;
+  --pubg-border: rgba(245, 184, 0, 0.4);
+}
+
+/* 1. Remove Office Decorative Elements */
+.LaptopDive_plant__PVYaF,
+.LaptopDive_mPlant__nNXNc,
+.LaptopDive_robot__fLaf_ {
+  display: none !important;
+}
+
+/* 2. Hero Text Layering & Positioning (Stacking Context) */
+/* Battleground Background = z-index 1 */
+.LaptopDive_glow__zUEm7,
+.LaptopDive_backdrop__73xP_ {
+  z-index: 1 !important;
+}
+
+/* Large SALMAN KHAN Typography = z-index 2 */
+.LaptopDive_wordmark__Rzh6E {
+  z-index: 2 !important;
+}
+
+/* Decorative "design & code" Typography = z-index 3 (Behind character, shifted left completely clear of face) */
+.LaptopDive_script__fuMhy {
+  z-index: 3 !important;
+  left: calc(var(--script-left) - 240px) !important;
+  top: 130px !important;
+  pointer-events: none;
+  opacity: 0.95 !important;
+}
+
+@media (max-width: 1200px) {
+  .LaptopDive_script__fuMhy {
+    left: calc(var(--script-left) - 160px) !important;
+    top: 130px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .LaptopDive_script__fuMhy {
+    left: calc(var(--script-left) - 120px) !important;
+    top: 140px !important;
+  }
+}
+
+/* Main PUBG Character = z-index 4 (Shifted right closer to card, bottom-aligned, scaled down ~22-25%) */
+.LaptopDive_person__PSEh_ {
+  z-index: 4 !important;
+  left: 140px !important;
+  top: auto !important;
+  bottom: 0 !important;
+  width: min(914px, 58vw) !important;
+  height: min(685px, 76vh) !important;
+  max-height: 700px !important;
+  pointer-events: none;
+  transition: transform 0.3s ease-out;
+}
+
+.LaptopDive_personImg__AyVly {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+}
+
+@media (min-width: 1600px) {
+  .LaptopDive_person__PSEh_ {
+    left: 170px !important;
+    width: 920px !important;
+    height: 710px !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  .LaptopDive_person__PSEh_ {
+    left: 90px !important;
+    width: 820px !important;
+    height: 630px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .LaptopDive_person__PSEh_ {
+    left: 20px !important;
+    width: 680px !important;
+    height: 540px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .LaptopDive_person__PSEh_ {
+    left: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 60vh !important;
+  }
+}
+
+/* Hanging Designer Card Container = z-index 5 */
+.LaptopDive_badge__qQVK_ {
+  z-index: 5 !important;
+  width: min(380px, 20vw) !important;
+  height: min(638px, 72vh) !important;
+  max-width: 385px !important;
+  right: 5vw !important;
+  left: auto !important;
+  top: -15px !important;
+  pointer-events: auto !important;
+  transform-origin: 50% 0 !important;
+}
+
+.LaptopDive_badgeDrop__x_75Y,
+.LaptopDive_badgeHover__4JY0H,
+.LaptopDive_badgeMode__rpYkG,
+.LaptopDive_badgeSway__YlcUk {
+  transform-origin: 50% 0 !important;
+}
+
+@media (max-width: 1400px) {
+  .LaptopDive_badge__qQVK_ {
+    width: 340px !important;
+    height: 570px !important;
+    right: 3vw !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .LaptopDive_badge__qQVK_ {
+    display: none !important;
+  }
+}
+
+/* Hide old SVG card artwork */
+.LaptopDive_badgeArt__48Jzq {
+  display: none !important;
+}
+
+/* 3. New PUBG-Themed Hanging Designer Card */
+.pubg-designer-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/images/mohamedandaloussi/laptop/pubg-card-lanyard.png') no-repeat center top;
+  background-size: 100% 100%;
+  pointer-events: auto;
+  filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.75));
+}
+
+.LaptopDive_card__YctP_ {
+  display: none !important;
+}
+
+/* Card Header Block */
+.pubg-card-header-block {
+  position: absolute;
+  left: 20%;
+  width: 58%;
+  top: 31%;
+  box-sizing: border-box;
+  font-family: var(--font-dive-sans, 'Onest', sans-serif);
+  pointer-events: none;
+}
+
+.pubg-card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pubg-card-title {
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.3px;
+  color: var(--pubg-yellow);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+  margin: 0;
+}
+
+.pubg-card-year {
+  font-size: 12px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 2px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--pubg-border);
+}
+
+.pubg-card-subtitle {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #E2E8F0;
+  margin: 6px 0 0 0;
+  text-transform: uppercase;
+}
+
+/* Card Photo Slot */
+.pubg-card-photo-wrapper {
+  position: absolute;
+  left: 34.86%;
+  top: 48.34%;
+  width: 29.13%;
+  height: 19.34%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+  background: #111;
+  pointer-events: none;
+}
+
+.pubg-card-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Card Divider Rows */
+.pubg-card-rows {
+  position: absolute;
+  left: 19.6%;
+  width: 58.9%;
+  top: 70.8%;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  box-sizing: border-box;
+  font-family: var(--font-dive-sans, 'Onest', sans-serif);
+  pointer-events: none;
+}
+
+.pubg-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  line-height: 1;
+}
+
+.pubg-card-row-label {
+  color: var(--pubg-yellow);
+  font-size: 7.5px;
+  letter-spacing: 0.6px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.pubg-card-row-value {
+  color: #FFFFFF;
+  font-size: 7.2px;
+  font-weight: 700;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+/* Mobile Badge scaling */
+.LaptopDive_mBadge__QyBNI .pubg-designer-card {
+  width: 100%;
+  height: 100%;
+}
+
+/* 4. PUBG Mobile Phone Contact Panel Theme */
+.Contact_panel__PU_BG,
+[class*="Contact_sheet"],
+[class*="Phone_panel"],
+[class*="phone-panel"] {
+  background: #121212 !important;
+  color: #F5F5F5 !important;
+  border-color: var(--pubg-yellow) !important;
+}
+
+[class*="Contact_call"],
+[class*="Contact_btn"] {
+  background: var(--pubg-yellow) !important;
+  color: #080808 !important;
+  font-weight: 800 !important;
+}
+
+/* Monogram Logo */
+.header-sk-monogram,
+.footer-sk-monogram {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 5. Replace CV Section Room Background with PUBG Battleground */
+.CvHome_room__gPQNO,
+[class*="CvHome_room"],
+#cv [class*="room"] {
+  background: url('/images/mohamedandaloussi/profile/pubg-cv-bg.jpg') no-repeat center center !important;
+  background-size: cover !important;
+}
+
+.CvHome_room__gPQNO img,
+.CvHome_room__gPQNO picture,
+[class*="CvHome_room"] img,
+[class*="CvHome_room"] picture {
+  object-fit: cover !important;
+  object-position: center 60% !important;
+}
+
+/* Remove luxury room decorative leaves, flowers, and falling petals */
+.CvHome_plants__5o2sH,
+.CvHome_plant__Qv2Y8,
+.CvHome_flowers__48k0m,
+.CvHome_palm__eN6hN,
+.CvHome_petals__i3m5s,
+[class*="CvHome_plants"],
+[class*="CvHome_plant"],
+[class*="CvHome_flower"],
+[class*="CvHome_palm"],
+[class*="CvHome_petal"] {
+  display: none !important;
+}
+
+/* 6. Thanks for Watching Closing Scene — Single TV, CRT Alignment */
+.OfflineTV_screen__Wz_nB {
+  left: 38.6% !important;
+  top: 38.2% !important;
+  width: 20.3% !important;
+  height: 28.8% !important;
+  border-radius: 12% / 15% !important;
+  background: #0b0d10 !important;
+  box-shadow: 0 0 60px rgba(255, 170, 36, 0.3), inset 0 0 25px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* 7. Tactical PUBG Footer Background */
+footer,
+.ui_footer__CCdWi,
+[class*="ui_footer__"] {
+  background: #080808 url('/images/mohamedandaloussi/footer/pubg-footer-bg.webp') no-repeat center bottom !important;
+  background-size: cover !important;
+  position: relative;
+  border-top: 1px solid rgba(245, 184, 0, 0.35) !important;
+}
+
+/* Remove duplicated description in footer */
+.ui_footerRole__sPnI_ {
+  display: none !important;
+}
