@@ -1,7 +1,9 @@
 /* ==========================================================================
    PUBG THEME & PERSONALIZATION STYLES FOR SALMAN KHAN PORTFOLIO
-   (FINAL CINEMATIC EDITION)
+   (CINEMATIC RESTORATION EDITION)
    ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Caveat+Brush&family=Onest:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
   --pubg-yellow: #F5B800;
@@ -21,52 +23,114 @@
   display: none !important;
 }
 
-/* 2. Hero Text Layering & Positioning (Stacking Context) */
+/* Ensure Pre elements are visible on offline static clone */
+.LaptopDive_pre__7gsSW {
+  opacity: 1 !important;
+}
+
+/* 2. Hero Frame & Text Layering Stacking Context */
 /* Battleground Background = z-index 1 */
 .LaptopDive_glow__zUEm7,
-.LaptopDive_backdrop__73xP_ {
+.LaptopDive_backdrop__73xP_,
+.LaptopDive_backdrop__MEAUR {
   z-index: 1 !important;
 }
 
-/* Large SALMAN KHAN Typography = z-index 2 */
-.LaptopDive_wordmark__Rzh6E {
-  z-index: 2 !important;
+/* Fullscreen Hero Canvas Frame = z-index 3 */
+.LaptopDive_frame__kcUBh {
+  z-index: 3 !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  transform: none !important;
 }
 
-/* Decorative "design & code" Typography = z-index 3 (Behind character, shifted left completely clear of face) */
+/* Hide hero elements in case mode cleanly */
+.LaptopDive_stage__iXYbq[data-mode=case] .LaptopDive_person__PSEh_,
+.LaptopDive_stage__iXYbq[data-mode=case] .LaptopDive_wordmark__Rzh6E,
+.LaptopDive_stage__iXYbq[data-mode=case] .LaptopDive_script__fuMhy,
+.LaptopDive_stage__iXYbq[data-mode=case] .LaptopDive_badge__qQVK_ {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Large Full-Width SALMAN KHAN Typography = z-index 2 inside frame */
+.LaptopDive_wordmark__Rzh6E {
+  z-index: 2 !important;
+  position: absolute !important;
+  top: clamp(20px, 3vh, 40px) !important;
+  left: 2.5vw !important;
+  width: 95vw !important;
+  max-width: none !important;
+  opacity: 1 !important;
+  transition: opacity 0.3s ease-out;
+}
+
+.LaptopDive_wordmarkSvg__rmDcz {
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.LaptopDive_wordmarkSvg__rmDcz text {
+  font-family: 'Anton', Impact, sans-serif !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Decorative "design & code" Typography = z-index 3 (Handwritten Caveat Brush script) */
 .LaptopDive_script__fuMhy {
   z-index: 3 !important;
-  left: calc(var(--script-left) - 90px) !important;
-  top: 130px !important;
+  position: absolute !important;
+  left: clamp(200px, 18vw, 340px) !important;
+  top: clamp(120px, 14vh, 180px) !important;
   pointer-events: none;
-  opacity: 0.95 !important;
+  opacity: 0.98 !important;
+}
+
+.LaptopDive_script__fuMhy,
+.LaptopDive_scriptMode__ucGtz,
+.Typed_box__u0cmQ,
+.Typed_typed__DVMRc,
+.Typed_ghost__1QXVp {
+  font-family: 'Caveat Brush', cursive !important;
+  font-size: clamp(34px, 3.8vw, 56px) !important;
+  transform: rotate(-8deg) !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85) !important;
 }
 
 @media (max-width: 1200px) {
   .LaptopDive_script__fuMhy {
-    left: calc(var(--script-left) - 60px) !important;
+    left: clamp(160px, 15vw, 280px) !important;
     top: 130px !important;
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .LaptopDive_script__fuMhy {
-    left: calc(var(--script-left) - 40px) !important;
-    top: 140px !important;
+    left: 20px !important;
+    top: 100px !important;
+    font-size: 28px !important;
   }
 }
 
-/* Main PUBG Character = z-index 4 (Shifted right closer to card, bottom-aligned, scaled down ~22-25%) */
+/* Main PUBG Character = z-index 4 (Bottom-anchored, fills ~85-90% height, zero bottom gap) */
 .LaptopDive_person__PSEh_ {
   z-index: 4 !important;
-  left: calc(140px + 5vw) !important;
+  position: absolute !important;
+  left: clamp(200px, 20vw, 380px) !important;
   top: auto !important;
   bottom: 0 !important;
-  width: min(914px, 58vw) !important;
-  height: min(685px, 76vh) !important;
-  max-height: 700px !important;
+  width: auto !important;
+  height: min(920px, 88vh) !important;
+  max-height: none !important;
+  aspect-ratio: 1197 / 1315 !important;
   pointer-events: none;
-  transition: transform 0.3s ease-out;
+  opacity: 1 !important;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out, filter 0.3s ease-out;
 }
 
 .LaptopDive_personImg__AyVly {
@@ -74,52 +138,45 @@
   height: 100% !important;
   object-fit: contain !important;
   object-position: center bottom !important;
+  display: block !important;
 }
 
-@media (min-width: 1600px) {
+@media (max-width: 1440px) {
   .LaptopDive_person__PSEh_ {
-    left: calc(170px + 5vw) !important;
-    width: 920px !important;
-    height: 710px !important;
-  }
-}
-
-@media (max-width: 1400px) {
-  .LaptopDive_person__PSEh_ {
-    left: calc(90px + 4vw) !important;
-    width: 820px !important;
-    height: 630px !important;
+    left: clamp(160px, 16vw, 280px) !important;
+    height: min(840px, 86vh) !important;
   }
 }
 
 @media (max-width: 1024px) {
   .LaptopDive_person__PSEh_ {
-    left: calc(20px + 3vw) !important;
-    width: 680px !important;
-    height: 540px !important;
+    left: clamp(80px, 10vw, 180px) !important;
+    height: min(720px, 80vh) !important;
   }
 }
 
 @media (max-width: 768px) {
   .LaptopDive_person__PSEh_ {
-    left: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: 60vh !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    height: min(520px, 68vh) !important;
   }
 }
 
 /* Hanging Designer Card Container = z-index 5 */
 .LaptopDive_badge__qQVK_ {
   z-index: 5 !important;
-  width: min(380px, 20vw) !important;
-  height: min(638px, 72vh) !important;
-  max-width: 385px !important;
-  right: 5vw !important;
+  position: absolute !important;
+  width: min(390px, 22vw) !important;
+  height: min(670px, 74vh) !important;
+  max-width: 395px !important;
+  right: calc(24px + 2vw) !important;
   left: auto !important;
   top: -15px !important;
+  opacity: 1 !important;
   pointer-events: auto !important;
   transform-origin: 50% 0 !important;
+  transition: opacity 0.3s ease-out, filter 0.3s ease-out;
 }
 
 .LaptopDive_badgeDrop__x_75Y,
@@ -132,8 +189,8 @@
 @media (max-width: 1400px) {
   .LaptopDive_badge__qQVK_ {
     width: 340px !important;
-    height: 570px !important;
-    right: 3vw !important;
+    height: 580px !important;
+    right: 2vw !important;
   }
 }
 
@@ -143,12 +200,19 @@
   }
 }
 
+@media (max-width: 820px) {
+  .LaptopDive_stage__iXYbq {
+    height: 100svh !important;
+    min-height: 100svh !important;
+  }
+}
+
 /* Hide old SVG card artwork */
 .LaptopDive_badgeArt__48Jzq {
   display: none !important;
 }
 
-/* 3. New PUBG-Themed Hanging Designer Card */
+/* 3. PUBG Hanging Designer Card */
 .pubg-designer-card {
   position: absolute;
   inset: 0;
@@ -233,7 +297,7 @@
   display: block;
 }
 
-/* Card Divider Rows: Exactly aligned with the artwork's 4 yellow lines */
+/* Card Divider Rows: Perfectly aligned on the artwork's 4 yellow lines */
 .pubg-card-rows {
   position: absolute;
   left: 15.55%;
@@ -273,7 +337,7 @@
 
 .pubg-card-row-label {
   color: var(--pubg-yellow);
-  font-size: clamp(6px, 0.62vw, 7.8px);
+  font-size: clamp(7.5px, 0.72vw, 9.5px);
   letter-spacing: 0.5px;
   font-weight: 800;
   flex-shrink: 0;
@@ -282,7 +346,7 @@
 
 .pubg-card-row-value {
   color: #FFFFFF;
-  font-size: clamp(5.8px, 0.58vw, 7.4px);
+  font-size: clamp(7.5px, 0.72vw, 9.5px);
   font-weight: 700;
   text-align: right;
   text-transform: uppercase;
@@ -296,7 +360,29 @@
   height: 100%;
 }
 
-/* 4. PUBG Mobile Phone Contact Panel Theme */
+/* 4. Interactive Mobile Phone in Bottom-Left Corner */
+.Reach_dock__3jVfO {
+  position: fixed !important;
+  z-index: 90 !important;
+  left: 24px !important;
+  bottom: 0 !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  transition: transform 0.65s cubic-bezier(0.2, 0.85, 0.25, 1), opacity 0.3s !important;
+}
+
+html:not([data-dive="on"]) .Reach_dock__3jVfO {
+  opacity: 1 !important;
+}
+
+.Reach_pointer__B5p1n {
+  stroke: #FFFFFF !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7)) !important;
+}
+
 .Contact_panel__PU_BG,
 [class*="Contact_sheet"],
 [class*="Phone_panel"],
@@ -307,37 +393,181 @@
 }
 
 [class*="Contact_call"],
-[class*="Contact_btn"] {
+[class*="Contact_btn"],
+.Reach_trigger__aimz1 {
   background: var(--pubg-yellow) !important;
   color: #080808 !important;
   font-weight: 800 !important;
+  cursor: pointer !important;
 }
 
-/* Monogram Logo */
-.header-sk-monogram,
-.footer-sk-monogram {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+/* 5. Laptop Dive Case Showcase & Project Gallery */
+.LaptopDive_stage__iXYbq[data-mode=case] .LaptopDive_flyer__kFeON {
+  opacity: 1 !important;
+  pointer-events: none;
 }
 
-/* 5. Replace CV Section Room Background with PUBG Battleground */
+.LaptopDive_stage__iXYbq[data-mode=hero] .LaptopDive_flyer__kFeON {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.LaptopDive_stage__iXYbq[data-screen=true] .LaptopDive_screen__gZTJ4 {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.LaptopDive_stage__iXYbq[data-screen=true] .LaptopDive_caseUi__Fx4CB {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  display: block !important;
+}
+
+.LaptopDive_stage__iXYbq:not([data-screen=true]) .LaptopDive_caseUi__Fx4CB {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  display: none !important;
+}
+
+.LaptopDive_stage__iXYbq[data-screen=true] .LaptopDive_navCase__F_yIT {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  z-index: 95 !important;
+}
+
+.LaptopDive_stage__iXYbq[data-screen=true] .LaptopDive_prev__CHTFl[data-dim=true] {
+  opacity: 0.4 !important;
+}
+
+.LaptopDive_caseImg__PUBG {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+  opacity: 0;
+  transition: opacity 0.45s ease-in-out;
+  pointer-events: none;
+}
+
+.LaptopDive_caseImg__PUBG[data-active=true] {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.LaptopDive_ticket__54M_K {
+  max-width: 320px !important;
+  background: #FFFFFF !important;
+  color: #111111 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75) !important;
+}
+
+.LaptopDive_ticketTitle__XM_uW {
+  font-family: 'Anton', "Onest", sans-serif !important;
+  white-space: normal !important;
+  line-height: 1.15 !important;
+  font-size: clamp(14px, 1.6vw, 22px) !important;
+  letter-spacing: 0.5px !important;
+  color: #111111 !important;
+}
+
+.LaptopDive_ticketTitle__XM_uW a {
+  color: #111111 !important;
+  text-decoration: none !important;
+}
+
+.LaptopDive_ticketTitle__XM_uW a:hover {
+  color: var(--pubg-orange) !important;
+  text-decoration: underline !important;
+}
+
+@media (max-width: 600px) {
+  .LaptopDive_ticket__54M_K {
+    top: 70px !important;
+    right: 15px !important;
+    left: 15px !important;
+    width: auto !important;
+    max-width: calc(100vw - 30px) !important;
+    padding: 12px 16px !important;
+  }
+  .LaptopDive_desc__RN85a {
+    display: none !important;
+  }
+}
+
+.LaptopDive_desc__RN85a {
+  max-width: 310px !important;
+  color: #F5F5F5 !important;
+}
+
+.LaptopDive_desc__RN85a .LaptopDive_key__Ifwts {
+  font-family: 'Space Mono', monospace !important;
+  font-weight: 700 !important;
+  color: var(--pubg-yellow) !important;
+  letter-spacing: 1px !important;
+  font-size: 13px !important;
+  margin-bottom: 8px !important;
+}
+
+.LaptopDive_desc__RN85a .LaptopDive_text__U2EFj {
+  font-family: 'Onest', sans-serif !important;
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  color: #D1D5DB !important;
+  margin-bottom: 16px !important;
+}
+
+.LaptopDive_desc__RN85a .LaptopDive_open__ng6K3 {
+  display: inline-block !important;
+  color: var(--pubg-yellow) !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
+  text-decoration: none !important;
+  border-bottom: 1.5px solid var(--pubg-yellow) !important;
+  padding-bottom: 2px !important;
+  transition: color 0.2s, border-color 0.2s !important;
+}
+
+.LaptopDive_desc__RN85a .LaptopDive_open__ng6K3:hover {
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+
+.LaptopDive_desc__RN85a .LaptopDive_num__YgGUQ {
+  font-family: 'Space Mono', monospace !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #9CA3AF !important;
+  margin-top: 18px !important;
+}
+
+.LaptopDive_logo__ACgXu {
+  font-family: 'Anton', sans-serif !important;
+  letter-spacing: 2px !important;
+  color: var(--pubg-yellow) !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+}
+
+/* 6. Replace CV Section Room Background with PUBG Tactical Asset */
+.CvHome_room__gPQNO picture {
+  display: none !important;
+}
+
 .CvHome_room__gPQNO,
 [class*="CvHome_room"],
 #cv [class*="room"] {
-  background: url('/images/mohamedandaloussi/cv/pubg-cv-bg.jpg') no-repeat center center !important;
-  background-size: cover !important;
-}
-
-.CvHome_room__gPQNO img,
-.CvHome_room__gPQNO picture,
-[class*="CvHome_room"] img,
-[class*="CvHome_room"] picture {
-  object-fit: cover !important;
-  object-position: center 60% !important;
+  background: url('/images/mohamedandaloussi/cv/pubg-cv-bg.jpg') no-repeat center center / cover !important;
 }
 
 /* Remove luxury room decorative leaves, flowers, and falling petals */
+.CvHome_plants__Mz5i9,
+.CvHome_plant___zZV6,
+.CvHome_flowers__ZEC7r,
+.CvHome_palm__R6rjX,
 .CvHome_plants__5o2sH,
 .CvHome_plant__Qv2Y8,
 .CvHome_flowers__48k0m,
@@ -351,7 +581,7 @@
   display: none !important;
 }
 
-/* 6. Thanks for Watching Closing Scene — CRT Screen Fit & Bezel Mask */
+/* 7. Thanks for Watching Closing Scene — CRT Screen Fit & Bezel Mask */
 #laptop-dive,
 #gallery,
 #cv,
@@ -405,7 +635,7 @@
   pointer-events: none !important;
 }
 
-/* 7. Tactical PUBG Footer Background */
+/* 8. Tactical PUBG Footer Background */
 footer,
 .ui_footer__CCdWi,
 [class*="ui_footer__"] {
@@ -420,9 +650,7 @@ p.ui_footerRole__sPnI_ {
   display: none !important;
 }
 
-/* =========================================================================
-   PUBG 3D Exhibition Gallery Polish & Veil Override
-   ========================================================================= */
+/* 9. 3D Exhibition Gallery Polish & Controls */
 .PrintGallery_veil__8GHBR {
   opacity: 0 !important;
   pointer-events: none !important;
@@ -436,4 +664,38 @@ p.ui_footerRole__sPnI_ {
 .PrintGallery_canvas__AYIfq {
   opacity: 1 !important;
   display: block !important;
+}
+
+.PrintGallery_gui__2nIqD {
+  z-index: 10 !important;
+  pointer-events: none;
+}
+
+.PrintGallery_mask___ffet {
+  overflow: visible !important;
+}
+
+.PrintGallery_mask___ffet > span {
+  transform: none !important;
+  display: inline-block !important;
+}
+
+.PrintGallery_arrows__Q2DaF,
+.PrintGallery_toggle__38yZE,
+.PrintGallery_enter__c2Ilw,
+.PrintGallery_caption__uMeev a {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.PrintGallery_headline__B5k8z {
+  font-family: 'Anton', "Arial Narrow", sans-serif !important;
+  font-size: clamp(48px, 9vw, 130px) !important;
+  color: #F5F5F5 !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+}
+
+.PrintGallery_kicker__5yOFc {
+  color: var(--pubg-yellow) !important;
+  font-weight: 700 !important;
 }

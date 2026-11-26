@@ -72,7 +72,7 @@
       });
 
       // 4. Hero Background
-      const bgImgs = document.querySelectorAll('.LaptopDive_backdropMedia__E_raI, .LaptopDive_backdrop__73xP_ img');
+      const bgImgs = document.querySelectorAll('.LaptopDive_backdropMedia__E_raI, .LaptopDive_backdrop__73xP_ img, .LaptopDive_backdrop__MEAUR img');
       bgImgs.forEach(img => {
         const targetSrc = profile.heroBg || '/images/mohamedandaloussi/laptop/pubg-battleground-bg.jpg';
         if (!img.src.includes('pubg-battleground-bg')) {
@@ -156,7 +156,7 @@
         }
         const actionLinks = reachPanel.querySelectorAll('.Reach_actions__IL57g a');
         if (actionLinks.length >= 3) {
-          actionLinks[0].href = `tel:${profile.phone.replace(/\s+/g, '')}`;
+          actionLinks[0].href = `tel:${(profile.phone || '').replace(/\s+/g, '')}`;
           actionLinks[1].href = profile.whatsappUrl || `https://wa.me/923152181308`;
           actionLinks[1].target = '_blank';
           actionLinks[2].href = `mailto:${profile.email}`;
@@ -165,7 +165,7 @@
         if (listLinks.length >= 4) {
           const pLink = listLinks[0].querySelector('a');
           if (pLink) {
-            pLink.href = `tel:${profile.phone.replace(/\s+/g, '')}`;
+            pLink.href = `tel:${(profile.phone || '').replace(/\s+/g, '')}`;
             pLink.textContent = profile.phone;
           }
           const waLink = listLinks[1].querySelector('a');
@@ -203,12 +203,7 @@
         });
       }
 
-      // 8. CV Section Title & Clean Native Download Button (Single Button)
-      const duplicateBtn = document.getElementById('cv-download-btn');
-      if (duplicateBtn) {
-        duplicateBtn.remove();
-      }
-
+      // 8. CV Section Title & Download Button
       const cvTitles = document.querySelectorAll('.CvHome_title__ktMGo');
       cvTitles.forEach(t => {
         const small = t.querySelector('small');
@@ -230,12 +225,12 @@
         el.textContent = 'SK//TV · CH 02';
       });
 
-      // 10. Footer Branding & Single Clean Description Line (No Duplicate)
+      // 10. Footer Branding
       const footerBase = document.querySelector('.ui_footerBase__6SSYI span');
       if (footerBase) {
         footerBase.textContent = `${seo.copyright || '© 2026 SALMAN KHAN | TECH WITH SALMAN'}`;
       }
-      
+
       const footerFirstCol = document.querySelector('.ui_footerGrid__Xhmaf > div:first-child');
       if (footerFirstCol) {
         const role = footerFirstCol.querySelector('.ui_footerRole__sPnI_');
@@ -261,34 +256,409 @@
       });
 
     } finally {
+      initReachPhone();
+      initLaptopController();
       initPubg3DGallery();
       isApplying = false;
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', applyPersonalization);
-  } else {
-    applyPersonalization();
+  // =========================================================================
+  // Interactive Phone Dock Controller (Bottom-Left "LET'S TALK")
+  // =========================================================================
+  function initReachPhone() {
+    const dock = document.querySelector('.Reach_dock__3jVfO');
+    if (!dock || dock.__reachPhoneInitialized) return;
+    dock.__reachPhoneInitialized = true;
+
+    // Always ensure data-dive="on" in initial view
+    document.documentElement.setAttribute('data-dive', 'on');
+
+    const trigger = dock.querySelector('.Reach_trigger__aimz1');
+    if (trigger) {
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dock.getAttribute('data-open') === 'true';
+        dock.setAttribute('data-open', isOpen ? 'false' : 'true');
+      });
+    }
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (dock.getAttribute('data-open') === 'true') {
+        if (!dock.contains(e.target)) {
+          dock.setAttribute('data-open', 'false');
+        }
+      }
+    });
+
+    // Handle scroll to maintain phone visibility in Hero & Laptop sections
+    window.addEventListener('scroll', () => {
+      const stage = document.getElementById('laptop-dive');
+      if (!stage) return;
+      const rect = stage.getBoundingClientRect();
+      if (rect.bottom > 80) {
+        document.documentElement.setAttribute('data-dive', 'on');
+      } else {
+        document.documentElement.setAttribute('data-dive', 'off');
+      }
+    }, { passive: true });
   }
 
-  window.addEventListener('load', applyPersonalization);
+  // =========================================================================
+  // Laptop Showcase & Interactive Project Controller
+  // =========================================================================
+  function initLaptopController() {
+    const stage = document.querySelector('#laptop-dive');
+    if (!stage || stage.__laptopControllerInitialized) return;
+    stage.__laptopControllerInitialized = true;
 
-  let timer = null;
-  const observer = new MutationObserver(() => {
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(() => {
-      applyPersonalization();
-    }, 200);
-  });
+    const projects = cfg.webProjects || [];
+    if (!projects.length) return;
 
-  observer.observe(document.body || document.documentElement, {
-    childList: true,
-    subtree: true,
-    attributes: false
-  });
+    let mode = 'hero'; // 'hero' | 'case'
+    let activeCase = 0;
+    let isTransitioning = false;
+    let wheelCooldown = 0;
 
-  
+    const flyer = stage.querySelector('.LaptopDive_flyer__kFeON');
+    const viewport = stage.querySelector('.LaptopDive_viewport__uIVt1');
+    const address = stage.querySelector('.LaptopDive_address__6s_FT');
+    const prevBtn = stage.querySelector('.LaptopDive_prev__CHTFl');
+    const nextBtn = stage.querySelector('.LaptopDive_next__T1_ES');
+    const hintBtn = stage.querySelector('.LaptopDive_hint__SFYRW');
+    const skipBtn = stage.querySelector('.LaptopDive_skip__K18W2');
+    const logoBtn = stage.querySelector('.LaptopDive_logo__ACgXu');
+    const person = stage.querySelector('.LaptopDive_person__PSEh_');
+    const wordmark = stage.querySelector('.LaptopDive_wordmark__Rzh6E');
+    const script = stage.querySelector('.LaptopDive_script__fuMhy');
+    const badge = stage.querySelector('.LaptopDive_badge__qQVK_');
+
+    if (logoBtn) {
+      logoBtn.textContent = 'SALMAN KHAN';
+    }
+
+    // Populate viewport with the 8 real project screenshots
+    if (viewport) {
+      viewport.innerHTML = '';
+      projects.forEach((proj, idx) => {
+        const img = document.createElement('img');
+        img.className = 'LaptopDive_caseImg__PUBG';
+        img.src = '/images/mohamedandaloussi/laptop/' + (proj.shot || 'salman-hridoy-portfolio.webp');
+        img.alt = proj.title;
+        img.setAttribute('data-active', idx === 0 ? 'true' : 'false');
+        viewport.appendChild(img);
+      });
+    }
+
+    // Ensure caseUi exists
+    let caseUi = stage.querySelector('.LaptopDive_caseUi__Fx4CB');
+    if (!caseUi) {
+      caseUi = document.createElement('div');
+      caseUi.className = 'LaptopDive_caseUi__Fx4CB';
+      caseUi.setAttribute('dir', 'auto');
+      const uiContainer = stage.querySelector('.LaptopDive_ui__4Qn5T') || stage;
+      uiContainer.appendChild(caseUi);
+    }
+
+    function updateCaseDisplay(idx) {
+      activeCase = idx;
+      const proj = projects[idx] || projects[0];
+
+      // 1. Update active slide image
+      const imgs = viewport ? viewport.querySelectorAll('.LaptopDive_caseImg__PUBG') : [];
+      imgs.forEach((img, i) => {
+        img.setAttribute('data-active', i === idx ? 'true' : 'false');
+      });
+
+      // 2. Update address bar
+      if (address) {
+        const displayUrl = proj.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        address.innerHTML = `
+          <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" style="display:inline-block; vertical-align:middle; margin-right:5px;">
+            <rect x="3" y="6" width="10" height="9" rx="1.5"></rect>
+            <path d="M5 6V4a3 3 0 0 1 6 0v2"></path>
+          </svg>
+          ${displayUrl}
+        `;
+      }
+
+      // 3. Update caseUi (Ticket & Description)
+      if (caseUi) {
+        caseUi.innerHTML = `
+          <div class="LaptopDive_ticket__54M_K" aria-live="polite">
+            <span class="LaptopDive_hole__uh1HW"></span>
+            <span class="LaptopDive_hole__uh1HW"></span>
+            <span class="LaptopDive_hole__uh1HW"></span>
+            <span class="LaptopDive_hole__uh1HW"></span>
+            <h2 class="LaptopDive_ticketTitle__XM_uW" style="--chars: ${Math.max(proj.title.length, 12)};">
+              <a href="${proj.url}" target="_blank" rel="noopener noreferrer">${proj.title}</a>
+            </h2>
+            <div class="LaptopDive_rows__b9wFi">
+              <p>2024 - 2026</p>
+              <p>${proj.kind}</p>
+              <p>Web Development</p>
+              <p>React · Next.js · Tactical UI</p>
+            </div>
+          </div>
+          <div class="LaptopDive_desc__RN85a">
+            <p class="LaptopDive_key__Ifwts">${proj.kind.toUpperCase()} // TACTICAL</p>
+            <p class="LaptopDive_text__U2EFj">${proj.desc}</p>
+            <a href="${proj.url}" class="LaptopDive_open__ng6K3" target="_blank" rel="noopener noreferrer">VISIT LIVE PROJECT →</a>
+            <p class="LaptopDive_num__YgGUQ">${String(idx + 1).padStart(2, '0')} / ${String(projects.length).padStart(2, '0')}</p>
+          </div>
+        `;
+      }
+
+      // 4. Update Navigation Buttons
+      if (prevBtn) {
+        prevBtn.setAttribute('data-dim', idx === 0 ? 'true' : 'false');
+      }
+      if (nextBtn) {
+        const label = nextBtn.querySelector('.LaptopDive_label__K8rRG');
+        if (label) {
+          if (idx === projects.length - 1) {
+            label.innerHTML = 'CONTINUE<br>GALLERY';
+          } else {
+            label.innerHTML = 'NEXT<br>CASE';
+          }
+        }
+      }
+
+      // 5. Trigger Screen Flash animation
+      const flash = stage.querySelector('.LaptopDive_flash__UpkIi');
+      if (flash) {
+        flash.style.animation = 'none';
+        void flash.offsetWidth;
+        flash.style.animation = 'LaptopDive_flash__UpkIi 0.6s ease-out both';
+      }
+    }
+
+    async function diveToCase(targetIdx = 0) {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      mode = 'case';
+
+      stage.setAttribute('data-phase', 'out');
+      if (flyer) flyer.style.opacity = '1';
+
+      // Fade and blur hero elements
+      [person, wordmark, script, badge].forEach(el => {
+        if (el) {
+          el.style.transition = 'opacity 0.26s ease-out, filter 0.26s ease-out';
+          el.style.opacity = '0';
+          el.style.filter = 'blur(10px)';
+        }
+      });
+
+      await new Promise(r => setTimeout(r, 180));
+      stage.setAttribute('data-phase', 'diving');
+      stage.setAttribute('data-mode', 'case');
+
+      await new Promise(r => setTimeout(r, 700));
+      stage.setAttribute('data-screen', 'true');
+      stage.setAttribute('data-phase', 'idle');
+
+      updateCaseDisplay(targetIdx);
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 400);
+    }
+
+    async function returnToHero() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      mode = 'hero';
+
+      stage.setAttribute('data-screen', 'false');
+      await new Promise(r => setTimeout(r, 100));
+
+      stage.setAttribute('data-phase', 'returning');
+      stage.setAttribute('data-mode', 'hero');
+
+      [person, wordmark, script, badge].forEach(el => {
+        if (el) {
+          el.style.transition = 'opacity 0.3s ease-in, filter 0.3s ease-in';
+          el.style.opacity = '1';
+          el.style.filter = 'blur(0)';
+        }
+      });
+
+      if (flyer) flyer.style.opacity = '0';
+
+      await new Promise(r => setTimeout(r, 600));
+      stage.setAttribute('data-phase', 'idle');
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 300);
+    }
+
+    function nextCase() {
+      if (isTransitioning) return;
+      if (activeCase < projects.length - 1) {
+        updateCaseDisplay(activeCase + 1);
+      } else {
+        const gallery = document.getElementById('gallery');
+        if (gallery) {
+          gallery.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+
+    function prevCase() {
+      if (isTransitioning) return;
+      if (activeCase > 0) {
+        updateCaseDisplay(activeCase - 1);
+      } else {
+        returnToHero();
+      }
+    }
+
+    // Expose controller API for QA and external triggers
+    window.__laptopController = {
+      diveToCase,
+      returnToHero,
+      nextCase,
+      prevCase,
+      updateCaseDisplay,
+      getMode: () => mode,
+      getActiveCase: () => activeCase
+    };
+
+    // Event Delegation for all Laptop Dive interactive buttons
+    document.addEventListener('click', (e) => {
+      const hint = e.target.closest('.LaptopDive_hint__SFYRW');
+      if (hint) {
+        console.log('[Personalizer] Hint button clicked via delegation');
+        e.preventDefault();
+        e.stopPropagation();
+        diveToCase(0);
+        return;
+      }
+      const next = e.target.closest('.LaptopDive_next__T1_ES');
+      if (next) {
+        console.log('[Personalizer] Next button clicked via delegation');
+        e.preventDefault();
+        e.stopPropagation();
+        nextCase();
+        return;
+      }
+      const prev = e.target.closest('.LaptopDive_prev__CHTFl');
+      if (prev) {
+        console.log('[Personalizer] Prev button clicked via delegation');
+        e.preventDefault();
+        e.stopPropagation();
+        prevCase();
+        return;
+      }
+      const skip = e.target.closest('.LaptopDive_skip__K18W2');
+      if (skip) {
+        e.preventDefault();
+        const gallery = document.getElementById('gallery');
+        if (gallery) gallery.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      const logo = e.target.closest('.LaptopDive_logo__ACgXu');
+      if (logo) {
+        e.preventDefault();
+        returnToHero();
+        return;
+      }
+    }, true);
+
+    // Wheel event controller
+    window.addEventListener('wheel', (e) => {
+      if (window.scrollY > 20) return;
+      if (isTransitioning) {
+        e.preventDefault();
+        return;
+      }
+
+      if (mode === 'hero') {
+        if (e.deltaY > 15) {
+          e.preventDefault();
+          diveToCase(0);
+        }
+      } else if (mode === 'case') {
+        if (Date.now() < wheelCooldown) {
+          e.preventDefault();
+          return;
+        }
+        if (Math.abs(e.deltaY) > 15) {
+          wheelCooldown = Date.now() + 650;
+          if (e.deltaY > 0) {
+            if (activeCase < projects.length - 1) {
+              e.preventDefault();
+              nextCase();
+            } else {
+              // On last project, allow smooth scroll into gallery
+              const gallery = document.getElementById('gallery');
+              if (gallery) gallery.scrollIntoView({ behavior: 'smooth' });
+            }
+          } else {
+            e.preventDefault();
+            prevCase();
+          }
+        }
+      }
+    }, { passive: false });
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (['ArrowDown', 'PageDown', ' '].includes(e.key)) {
+        if (window.scrollY <= 10) {
+          if (mode === 'hero') {
+            e.preventDefault();
+            diveToCase(0);
+          } else if (mode === 'case') {
+            e.preventDefault();
+            nextCase();
+          }
+        }
+      } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
+        if (window.scrollY <= 10 && mode === 'case') {
+          e.preventDefault();
+          prevCase();
+        }
+      } else if (mode === 'case' && e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextCase();
+      } else if (mode === 'case' && e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevCase();
+      }
+    });
+
+    // Touch gesture support
+    let touchStartY = 0;
+    stage.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    stage.addEventListener('touchmove', (e) => {
+      if (window.scrollY <= 10 && mode === 'case' && activeCase < projects.length - 1) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    stage.addEventListener('touchend', (e) => {
+      if (window.scrollY > 10) return;
+      const dy = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(dy) > 40) {
+        if (dy > 0) {
+          if (mode === 'hero') diveToCase(0);
+          else if (mode === 'case') nextCase();
+        } else {
+          if (mode === 'case') prevCase();
+        }
+      }
+    });
+
+    updateCaseDisplay(0);
+  }
+
   // =========================================================================
   // PUBG 3D Interactive Curved Exhibition Gallery Initializer
   // =========================================================================
@@ -360,6 +730,28 @@
       console.error('[Personalizer] Error loading PUBG gallery chunks:', err);
     });
   }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyPersonalization);
+  } else {
+    applyPersonalization();
+  }
+
+  window.addEventListener('load', applyPersonalization);
+
+  let timer = null;
+  const observer = new MutationObserver(() => {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      applyPersonalization();
+    }, 200);
+  });
+
+  observer.observe(document.body || document.documentElement, {
+    childList: true,
+    subtree: true,
+    attributes: false
+  });
 
   console.log('[Personalizer] Salman Khan PUBG Portfolio customization ready.');
 })();
