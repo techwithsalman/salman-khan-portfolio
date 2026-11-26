@@ -95,6 +95,12 @@
         }
       });
 
+      // Ensure Hero Stage has data-in="true" so wordmark and badge drop in reliably
+      const stage = document.querySelector('#laptop-dive');
+      if (stage && stage.getAttribute('data-in') !== 'true') {
+        stage.setAttribute('data-in', 'true');
+      }
+
       // 6. PUBG Hanging Designer Card
       const badgeHovers = document.querySelectorAll('.LaptopDive_badgeHover__4JY0H');
       badgeHovers.forEach(container => {

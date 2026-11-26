@@ -325,7 +325,7 @@
 .CvHome_room__gPQNO,
 [class*="CvHome_room"],
 #cv [class*="room"] {
-  background: url('/images/mohamedandaloussi/profile/pubg-cv-bg.jpg') no-repeat center center !important;
+  background: url('/images/mohamedandaloussi/cv/pubg-cv-bg.jpg') no-repeat center center !important;
   background-size: cover !important;
 }
 
@@ -352,6 +352,13 @@
 }
 
 /* 6. Thanks for Watching Closing Scene — CRT Screen Fit & Bezel Mask */
+#laptop-dive,
+#gallery,
+#cv,
+#offline {
+  isolation: isolate;
+}
+
 .OfflineTV_day__KtVe6,
 [class*="OfflineTV_day"] {
   background-image: url('/images/mohamedandaloussi/offline/tv-day-1920.webp') !important;
@@ -365,10 +372,10 @@
 }
 
 .OfflineTV_screen__Wz_nB {
-  left: 39.8% !important;
-  top: 39.6% !important;
-  width: 18.8% !important;
-  height: 26.8% !important;
+  left: 39.0% !important;
+  top: 36.8% !important;
+  width: 19.5% !important;
+  height: 26.6% !important;
   border-radius: 12% / 15% !important;
   background: #07090c !important;
   box-shadow: none !important;
